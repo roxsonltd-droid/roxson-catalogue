@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
 import { t, type Lang } from "@/lib/i18n";
 import type { CategoryData } from "@/lib/types";
@@ -62,10 +61,10 @@ export function Header({ categories, searchValue, onSearchChange, resultLabel, o
               <span>{lang === "bg" ? c.titleBg : c.titleEn}</span>
             </a>
           ))}
-          <Link href="/contact" className="navlink" data-nav="contact" onClick={onNavigate}>
+          <a href="#contact" className="navlink" data-nav="contact" onClick={onNavigate}>
             <span className="navnum">→</span>
             <span>{t(lang, "nav.contact")}</span>
-          </Link>
+          </a>
         </nav>
         <div className="lang-switch" role="group" aria-label="Language / Език">
           <button

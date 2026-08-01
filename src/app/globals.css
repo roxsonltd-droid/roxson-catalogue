@@ -233,13 +233,15 @@ footer h5 { font-family: var(--font-inter), sans-serif; font-size: 12px; text-tr
 }
 
 /* ---------- Contact page ---------- */
+.contact-section { padding: 56px 0 8px; scroll-margin-top: 90px; }
+.contact-lead { color: var(--steel); margin: 12px 0 0; max-width: 560px; line-height: 1.6; }
 .page-hero {
   background: linear-gradient(120deg, var(--blue-deep) 0%, var(--blue) 62%, var(--blue-bright) 100%);
   color: #fff; padding: 64px 0;
 }
 .page-hero h1 { font-size: 42px; font-weight: 600; }
 .page-hero p { color: #D9E2F2; margin: 14px 0 0; max-width: 560px; line-height: 1.6; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 48px 0 72px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 32px 0 72px; }
 .contact-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px; }
 .form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .form-field label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--steel); }

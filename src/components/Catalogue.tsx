@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Capabilities } from "@/components/Capabilities";
 import { CategorySection } from "@/components/CategorySection";
+import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { useLang } from "@/components/LanguageProvider";
@@ -88,6 +89,8 @@ export function Catalogue({ data }: { data: CatalogueData }) {
       <p className="empty-state" id="emptyState" style={q && visibleTotal === 0 ? { display: "block" } : undefined}>
         {t(lang, "search.empty")}
       </p>
+
+      <ContactSection />
 
       <Footer categories={data.categories} />
       <BackToTop />
