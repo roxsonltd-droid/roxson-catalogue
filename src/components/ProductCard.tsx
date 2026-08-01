@@ -16,7 +16,7 @@ function formatDiameter(min: number | null, max: number | null): string {
   return `${min}″–${max}″`;
 }
 
-export function ProductCard({ product }: { product: ProductData }) {
+export function ProductCard({ product, catSlug }: { product: ProductData; catSlug: string }) {
   const { lang } = useLang();
 
   const series = pick(lang, product.seriesEn, product.seriesBg);
@@ -29,7 +29,7 @@ export function ProductCard({ product }: { product: ProductData }) {
   const standard = pick(lang, product.standardEn, product.standardBg);
 
   return (
-    <article className="card" data-cat={product.categoryId} data-search={product.searchText}>
+    <article className="card" data-cat={catSlug} data-search={product.searchText}>
       <div className="card-photo">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={product.imageUrl} alt={`${product.code} ${series}`} loading="lazy" />

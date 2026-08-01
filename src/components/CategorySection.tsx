@@ -27,7 +27,7 @@ export function CategorySection({ category, products, total, alt }: CategorySect
         </div>
         <div className="grid">
           {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
+            <ProductCard key={p.id} product={p} catSlug={category.slug} />
           ))}
         </div>
       </div>

@@ -53,6 +53,7 @@ export const i18n = {
   "footer.copyright": { en: "© ROXSON LTD — Sofia, Bulgaria", bg: "© ROXSON LTD — София, България" },
   "footer.distributor": { en: "ARBO flexible duct systems · official distributor", bg: "Системи за гъвкави въздуховоди ARBO · официален дистрибутор" },
   "footer.location": { en: "📍 Sofia, Bulgaria", bg: "📍 София, България" },
+  "footer.phone": { en: "+359 894 762 270", bg: "+359 894 762 270" },
   "nav.contact": { en: "Contact", bg: "Контакт" },
   "contact.title": { en: "Contact ROXSON LTD", bg: "Контакти с ROXSON LTD" },
   "contact.subtitle": {

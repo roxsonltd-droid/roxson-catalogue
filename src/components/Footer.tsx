@@ -17,6 +17,7 @@ export function Footer({ categories }: { categories: CategoryData[] }) {
             <p>{t(lang, "footer.brand")}</p>
             <div className="foot-contact">
               <a href="mailto:roxson.ltd@gmail.com">✉ roxson.ltd@gmail.com</a>
+              <a href="tel:+359894762270">☎ {t(lang, "footer.phone")}</a>
               <span>{t(lang, "footer.location")}</span>
             </div>
           </div>
