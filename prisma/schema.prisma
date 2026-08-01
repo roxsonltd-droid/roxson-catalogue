@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  slug     String    @unique
+  num      Int       @default(0)
+  titleEn  String
+  titleBg  String
+  blurbEn  String
+  blurbBg  String
+  products Product[]
+}
+
+model Product {
+  id                Int      @id @default(autoincrement())
+  code              String
+  seriesEn          String
+  seriesBg          String
+  descEn            String
+  descBg            String
+  materialEn        String   @default("")
+  materialBg        String   @default("")
+  diameterMin       Float?
+  diameterMax       Float?
+  layout            String   @default("ruler")
+  coreEn            String   @default("")
+  coreBg            String   @default("")
+  insulationEn      String   @default("")
+  insulationBg      String   @default("")
+  jacketEn          String   @default("")
+  jacketBg          String   @default("")
+  applicationEn     String   @default("")
+  applicationBg     String   @default("")
+  standardEn        String   @default("")
+  standardBg        String   @default("")
+  standardHighlight Boolean  @default(false)
+  imageUrl          String
+  searchText        String   @default("")
+  order             Int      @default(0)
+  categoryId        Int
+  category          Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId])
+}
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
