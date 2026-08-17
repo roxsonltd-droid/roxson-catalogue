@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import { t, type Lang } from "@/lib/i18n";
 import type { CategoryData } from "@/lib/types";
@@ -17,6 +17,7 @@ type HeaderProps = {
 export function Header({ categories, searchValue, onSearchChange, resultLabel, onNavigate, showSearch = true }: HeaderProps) {
   const { lang, setLang } = useLang();
   const navRef = useRef<HTMLElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,12 +39,29 @@ export function Header({ categories, searchValue, onSearchChange, resultLabel, o
     return () => observer.disconnect();
   }, [categories]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (!(e.target as HTMLElement).closest(".topbar")) setMenuOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("click", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
   const switchLang = (next: Lang) => setLang(next);
 
   return (
     <div className="topbar">
       <div className="topbar-inner">
-        <a href="#top" className="brand" onClick={onNavigate}>
+        <a href="#top" className="brand" onClick={() => { onNavigate(); closeMenu(); }}>
           <span className="brand-word">
             <span className="name">ROXSON LTD</span>
             <span className="tag">{t(lang, "footer.location").replace("📍 ", "")}</span>
@@ -104,7 +122,34 @@ export function Header({ categories, searchValue, onSearchChange, resultLabel, o
             {resultLabel}
           </span>
         )}
+        <button
+          type="button"
+          className={`menu-toggle${menuOpen ? " open" : ""}`}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          <svg className="icon-open" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <svg className="icon-close" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
+      <nav className={`mobile-nav${menuOpen ? " open" : ""}`} id="mobile-nav" aria-label="Sections">
+        {categories.map((c) => (
+          <a key={c.slug} href={`#${c.slug}`} onClick={() => { onNavigate(); closeMenu(); }}>
+            <span className="mono navnum">{String(c.num).padStart(2, "0")}</span>
+            <span>{lang === "bg" ? c.titleBg : c.titleEn}</span>
+          </a>
+        ))}
+        <a href="#contact" onClick={() => { onNavigate(); closeMenu(); }}>
+          <span className="navnum">→</span>
+          <span>{t(lang, "nav.contact")}</span>
+        </a>
+      </nav>
     </div>
   );
 }
