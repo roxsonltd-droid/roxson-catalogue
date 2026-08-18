@@ -56,6 +56,7 @@ model Product {
   categoryId          Int
   category            Category            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   inquiryItems        InquiryItem[]
+  quoteItems          QuoteItem[]
 
   @@index([categoryId])
   @@index([isActive])
@@ -72,6 +73,7 @@ model Inquiry {
   message     String?
   status      InquiryStatus @default(NEW)
   items       InquiryItem[]
+  quotes      Quote[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
@@ -96,6 +98,51 @@ model InquiryItem {
   @@index([productId])
 }
 
+model Quote {
+  id            Int         @id @default(autoincrement())
+  inquiryId     Int
+  inquiry       Inquiry     @relation(fields: [inquiryId], references: [id], onDelete: Restrict)
+  version       Int         @default(1)
+  status        QuoteStatus @default(DRAFT)
+  currency      String      @default("EUR")
+  subtotal      Decimal     @default(0) @db.Decimal(14, 2)
+  freight       Decimal     @default(0) @db.Decimal(14, 2)
+  discount      Decimal     @default(0) @db.Decimal(14, 2)
+  total         Decimal     @default(0) @db.Decimal(14, 2)
+  validUntil    DateTime?
+  paymentTerms  String?
+  deliveryTerms String?
+  notes         String?
+  items         QuoteItem[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([inquiryId, version])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model QuoteItem {
+  id           Int           @id @default(autoincrement())
+  quoteId      Int
+  quote        Quote         @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  productId    Int?
+  product      Product?      @relation(fields: [productId], references: [id], onDelete: SetNull)
+  sku          String
+  supplierCode String?
+  description  String
+  diameter     Float?
+  diameterUnit DiameterUnit?
+  quantity     Decimal       @db.Decimal(14, 3)
+  unit         String
+  unitPrice    Decimal       @db.Decimal(14, 4)
+  lineTotal    Decimal       @db.Decimal(14, 2)
+  notes        String?
+
+  @@index([quoteId])
+  @@index([productId])
+}
+
 enum InquiryStatus {
   NEW
   REVIEWING
@@ -114,6 +161,15 @@ enum TechnicalDataStatus {
   UNREVIEWED
   NEEDS_VERIFICATION
   VERIFIED
+}
+
+enum QuoteStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  REJECTED
+  EXPIRED
+  SUPERSEDED
 }
 
 model Admin {
