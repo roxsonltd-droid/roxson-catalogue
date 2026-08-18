@@ -52,6 +52,9 @@ export async function POST(request: Request) {
         phone: input.phone || null,
         country: input.country || null,
         message: input.message || null,
+        activities: {
+          create: { type: "CREATED", description: "RFQ submitted by customer" },
+        },
         items: {
           create: input.items.map((item) => {
             const product = productMap.get(item.productId)!;

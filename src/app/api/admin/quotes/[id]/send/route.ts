@@ -47,10 +47,19 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       return new Response("Email delivery failed", { status: 502 });
     }
 
-    await prisma.quote.update({
-      where: { id: quote.id },
-      data: { emailedAt: new Date(), sentToEmail: recipient },
-    });
+    const now = new Date();
+    await prisma.$transaction([
+      prisma.quote.update({ where: { id: quote.id }, data: { emailedAt: now, sentToEmail: recipient } }),
+      prisma.inquiry.update({ where: { id: quote.inquiryId }, data: { lastActivityAt: now } }),
+      prisma.inquiryActivity.create({
+        data: {
+          inquiryId: quote.inquiryId,
+          type: "QUOTE_EMAILED",
+          description: `${data.quoteNumber} emailed to ${recipient}`,
+          actor: session.user.name || "Admin",
+        },
+      }),
+    ]);
     return Response.redirect(new URL(`/admin/inquiries/${quote.inquiryId}/quote?quote=${quote.id}`, request.url), 303);
   } catch (error) {
     const message = error instanceof Error ? error.message : "Email delivery failed";

@@ -9,6 +9,7 @@ import { prisma } from "@/lib/db";
 async function requireAdmin() {
   const session = await auth();
   if (!session?.user) throw new Error("Unauthorized");
+  return session.user.name || "Admin";
 }
 
 async function serializableTransaction<T>(
@@ -48,7 +49,7 @@ function positiveDecimal(formData: FormData, key: string): Prisma.Decimal {
 }
 
 export async function saveQuoteDraft(inquiryId: number, quoteId: number | null, formData: FormData) {
-  await requireAdmin();
+  const actor = await requireAdmin();
 
   const savedQuoteId = await serializableTransaction(async (tx) => {
     const existingQuote = quoteId == null
@@ -135,6 +136,11 @@ export async function saveQuoteDraft(inquiryId: number, quoteId: number | null, 
         where: { id: existingQuote.id },
         data: { ...quoteData, items: { create: items } },
       });
+      const now = new Date();
+      await tx.inquiry.update({ where: { id: inquiryId }, data: { lastActivityAt: now } });
+      await tx.inquiryActivity.create({
+        data: { inquiryId, type: "QUOTE_UPDATED", description: `Quote V${existingQuote.version} draft updated`, actor },
+      });
       return existingQuote.id;
     }
 
@@ -142,7 +148,11 @@ export async function saveQuoteDraft(inquiryId: number, quoteId: number | null, 
     const quote = await tx.quote.create({
       data: { inquiryId, version, ...quoteData, items: { create: items } },
     });
-    await tx.inquiry.update({ where: { id: inquiryId }, data: { status: "REVIEWING" } });
+    const now = new Date();
+    await tx.inquiry.update({ where: { id: inquiryId }, data: { status: "REVIEWING", lastActivityAt: now } });
+    await tx.inquiryActivity.create({
+      data: { inquiryId, type: "QUOTE_CREATED", description: `Quote V${version} draft created`, actor },
+    });
     return quote.id;
   });
 
@@ -151,7 +161,7 @@ export async function saveQuoteDraft(inquiryId: number, quoteId: number | null, 
 }
 
 export async function markQuoteSent(inquiryId: number, quoteId: number) {
-  await requireAdmin();
+  const actor = await requireAdmin();
   await serializableTransaction(async (tx) => {
     const quote = await tx.quote.findFirst({ where: { id: quoteId, inquiryId, status: "DRAFT" } });
     if (!quote) throw new Error("Draft quote not found");
@@ -163,8 +173,76 @@ export async function markQuoteSent(inquiryId: number, quoteId: number) {
       where: { id: quoteId },
       data: { status: "SENT", sentAt: new Date() },
     });
-    await tx.inquiry.update({ where: { id: inquiryId }, data: { status: "QUOTED" } });
+    const now = new Date();
+    await tx.inquiry.update({ where: { id: inquiryId }, data: { status: "QUOTED", lastActivityAt: now } });
+    await tx.inquiryActivity.create({
+      data: { inquiryId, type: "QUOTE_FINALIZED", description: `Quote V${quote.version} finalized`, actor },
+    });
   });
+  revalidatePath(`/admin/inquiries/${inquiryId}`);
+  redirect(`/admin/inquiries/${inquiryId}`);
+}
+
+const inquiryStatuses = ["NEW", "REVIEWING", "QUOTED", "NEGOTIATING", "WON", "LOST"] as const;
+
+export async function updateInquiryStatus(inquiryId: number, formData: FormData) {
+  const actor = await requireAdmin();
+  const status = text(formData, "status");
+  if (!inquiryStatuses.includes(status as (typeof inquiryStatuses)[number])) throw new Error("Invalid status");
+
+  await serializableTransaction(async (tx) => {
+    const inquiry = await tx.inquiry.findUnique({ where: { id: inquiryId }, select: { status: true } });
+    if (!inquiry) throw new Error("Inquiry not found");
+    if (inquiry.status === status) return;
+    const now = new Date();
+    await tx.inquiry.update({ where: { id: inquiryId }, data: { status: status as typeof inquiry.status, lastActivityAt: now } });
+    await tx.inquiryActivity.create({
+      data: { inquiryId, type: "STATUS_CHANGED", description: `Status changed from ${inquiry.status} to ${status}`, actor },
+    });
+  });
+  revalidatePath("/admin/inquiries");
+  revalidatePath(`/admin/inquiries/${inquiryId}`);
+  redirect(`/admin/inquiries/${inquiryId}`);
+}
+
+export async function updateNextAction(inquiryId: number, formData: FormData) {
+  const actor = await requireAdmin();
+  const nextAction = text(formData, "nextAction") || null;
+  const dateRaw = text(formData, "nextActionAt");
+  const nextActionAt = dateRaw ? new Date(`${dateRaw}T00:00:00.000Z`) : null;
+  if (nextActionAt && Number.isNaN(nextActionAt.getTime())) throw new Error("Invalid next action date");
+  const now = new Date();
+
+  await prisma.$transaction([
+    prisma.inquiry.update({ where: { id: inquiryId }, data: { nextAction, nextActionAt, lastActivityAt: now } }),
+    prisma.inquiryActivity.create({
+      data: {
+        inquiryId,
+        type: "NEXT_ACTION_UPDATED",
+        description: nextAction ? `Next action set: ${nextAction}${nextActionAt ? ` (${dateRaw})` : ""}` : "Next action cleared",
+        actor,
+      },
+    }),
+  ]);
+  revalidatePath("/admin/inquiries");
+  revalidatePath(`/admin/inquiries/${inquiryId}`);
+  redirect(`/admin/inquiries/${inquiryId}`);
+}
+
+export async function addInquiryNote(inquiryId: number, formData: FormData) {
+  const actor = await requireAdmin();
+  const body = text(formData, "body");
+  if (!body || body.length > 5000) throw new Error("Invalid note");
+  const now = new Date();
+
+  await prisma.$transaction([
+    prisma.inquiryNote.create({ data: { inquiryId, body, author: actor } }),
+    prisma.inquiryActivity.create({
+      data: { inquiryId, type: "NOTE_ADDED", description: "Sales note added", actor },
+    }),
+    prisma.inquiry.update({ where: { id: inquiryId }, data: { lastActivityAt: now } }),
+  ]);
+  revalidatePath("/admin/inquiries");
   revalidatePath(`/admin/inquiries/${inquiryId}`);
   redirect(`/admin/inquiries/${inquiryId}`);
 }
