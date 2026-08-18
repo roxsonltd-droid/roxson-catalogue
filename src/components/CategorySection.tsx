@@ -3,16 +3,23 @@
 import { ProductCard } from "@/components/ProductCard";
 import { useLang } from "@/components/LanguageProvider";
 import { countLabel } from "@/lib/i18n";
-import type { CategoryData, ProductData } from "@/lib/types";
+import type { CategoryData, InquiryDraftItem, ProductData } from "@/lib/types";
 
 type CategorySectionProps = {
   category: CategoryData;
   products: ProductData[];
   total: number;
   alt: boolean;
+  onAddToInquiry: (item: InquiryDraftItem) => void;
 };
 
-export function CategorySection({ category, products, total, alt }: CategorySectionProps) {
+export function CategorySection({
+  category,
+  products,
+  total,
+  alt,
+  onAddToInquiry,
+}: CategorySectionProps) {
   const { lang } = useLang();
   return (
     <section className={`cat${alt ? " alt" : ""}`} id={category.slug} data-cat-section={category.slug}>
@@ -27,7 +34,12 @@ export function CategorySection({ category, products, total, alt }: CategorySect
         </div>
         <div className="grid">
           {products.map((p) => (
-            <ProductCard key={p.id} product={p} catSlug={category.slug} />
+            <ProductCard
+              key={p.id}
+              product={p}
+              catSlug={category.slug}
+              onAddToInquiry={onAddToInquiry}
+            />
           ))}
         </div>
       </div>

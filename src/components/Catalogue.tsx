@@ -8,13 +8,40 @@ import { CategorySection } from "@/components/CategorySection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
+import { InquiryDrawer } from "@/components/InquiryDrawer";
 import { useLang } from "@/components/LanguageProvider";
 import { t, searchCountLabel } from "@/lib/i18n";
-import type { CatalogueData, ProductData } from "@/lib/types";
+import type { CatalogueData, InquiryDraftItem, ProductData } from "@/lib/types";
 
 export function Catalogue({ data }: { data: CatalogueData }) {
   const { lang } = useLang();
   const [query, setQuery] = useState("");
+  const [inquiryItems, setInquiryItems] = useState<InquiryDraftItem[]>([]);
+  const [inquiryOpen, setInquiryOpen] = useState(false);
+
+  function addToInquiry(item: InquiryDraftItem) {
+    setInquiryItems((current) => {
+      const existingIndex = current.findIndex(
+        (existing) =>
+          existing.productId === item.productId &&
+          existing.diameter === item.diameter &&
+          existing.diameterUnit === item.diameterUnit
+      );
+
+      if (existingIndex === -1) return [...current, item];
+
+      return current.map((existing, index) =>
+        index === existingIndex
+          ? { ...existing, quantity: existing.quantity + item.quantity }
+          : existing
+      );
+    });
+    setInquiryOpen(true);
+  }
+
+  function removeInquiryItem(index: number) {
+    setInquiryItems((current) => current.filter((_, itemIndex) => itemIndex !== index));
+  }
 
   const productsByCategory = useMemo(() => {
     const map = new Map<number, ProductData[]>();
@@ -55,7 +82,7 @@ export function Catalogue({ data }: { data: CatalogueData }) {
       />
       <Hero />
 
-      <section className="toc wrap">
+      <section className="toc wrap" data-inquiry-items={inquiryItems.length}>
         <h3 className="cap-title">{t(lang, "toc.title")}</h3>
         <div className="toc-grid">
           {data.categories.map((c) => (
@@ -82,6 +109,7 @@ export function Catalogue({ data }: { data: CatalogueData }) {
             products={products}
             total={productsByCategory.get(c.id)?.length ?? 0}
             alt={c.num % 2 === 0}
+            onAddToInquiry={addToInquiry}
           />
         );
       })}
@@ -94,6 +122,24 @@ export function Catalogue({ data }: { data: CatalogueData }) {
 
       <Footer categories={data.categories} />
       <BackToTop />
+
+      {inquiryItems.length > 0 && (
+        <button type="button" className="inquiry-floating-button" onClick={() => setInquiryOpen(true)}>
+          {lang === "bg" ? "Запитване" : "Inquiry"} ({inquiryItems.length})
+        </button>
+      )}
+
+      <InquiryDrawer
+        items={inquiryItems}
+        products={data.products}
+        open={inquiryOpen}
+        onClose={() => setInquiryOpen(false)}
+        onRemove={removeInquiryItem}
+        onContinue={() => {
+          setInquiryOpen(false);
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        }}
+      />
     </>
   );
 }
