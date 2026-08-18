@@ -10,7 +10,9 @@ export type CategoryData = {
 
 export type ProductData = {
   id: number;
-  code: string;
+  sku: string;
+  slug: string;
+  supplierCode: string | null;
   seriesEn: string;
   seriesBg: string;
   descEn: string;
@@ -19,6 +21,10 @@ export type ProductData = {
   materialBg: string;
   diameterMin: number | null;
   diameterMax: number | null;
+  diameterUnit: string;
+  unit: string;
+  moq: number | null;
+  packLength: number | null;
   layout: "ruler" | "layers" | "table";
   coreEn: string;
   coreBg: string;
@@ -32,8 +38,10 @@ export type ProductData = {
   standardBg: string;
   standardHighlight: boolean;
   imageUrl: string;
+  datasheetUrl: string | null;
   searchText: string;
   order: number;
+  isActive: boolean;
   categoryId: number;
 };
 

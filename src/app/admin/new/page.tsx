@@ -29,7 +29,9 @@ export default async function NewProductPage({
   const product = preselect
     ? {
         id: 0,
-        code: "",
+        sku: "",
+        slug: "",
+        supplierCode: null,
         seriesEn: "",
         seriesBg: "",
         descEn: "",
@@ -38,6 +40,10 @@ export default async function NewProductPage({
         materialBg: "",
         diameterMin: null,
         diameterMax: null,
+        diameterUnit: "in",
+        unit: "m",
+        moq: null,
+        packLength: null,
         layout: "ruler" as const,
         coreEn: "",
         coreBg: "",
@@ -51,8 +57,10 @@ export default async function NewProductPage({
         standardBg: "",
         standardHighlight: false,
         imageUrl: "",
+        datasheetUrl: null,
         searchText: "",
         order: 0,
+        isActive: true,
         categoryId: preselect.id,
       }
     : null;

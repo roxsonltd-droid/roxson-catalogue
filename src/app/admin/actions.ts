@@ -12,6 +12,14 @@ export type ActionResult = {
 
 const LAYOUTS = ["ruler", "layers", "table"];
 
+function slugify(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 function str(formData: FormData, key: string): string {
   return (formData.get(key) as string | null)?.trim() ?? "";
 }
@@ -30,7 +38,8 @@ function int(formData: FormData, key: string, fallback: number): number {
 }
 
 function buildSearchText(values: {
-  code: string;
+  sku: string;
+  supplierCode: string | null;
   seriesEn: string;
   descEn: string;
   materialEn: string;
@@ -40,7 +49,7 @@ function buildSearchText(values: {
   applicationEn: string;
   standardEn: string;
 }): string {
-  return [values.code, values.seriesEn, values.descEn, values.materialEn, values.coreEn, values.insulationEn, values.jacketEn, values.applicationEn, values.standardEn]
+  return [values.sku, values.supplierCode, values.seriesEn, values.descEn, values.materialEn, values.coreEn, values.insulationEn, values.jacketEn, values.applicationEn, values.standardEn]
     .join(" ")
     .toLowerCase();
 }
@@ -68,7 +77,9 @@ async function readImage(formData: FormData, fallbackUrl: string): Promise<{ url
 function collectProductData(formData: FormData) {
   const layout = str(formData, "layout");
   return {
-    code: str(formData, "code"),
+    sku: str(formData, "sku"),
+    slug: slugify(str(formData, "slug") || str(formData, "sku")),
+    supplierCode: str(formData, "supplierCode") || null,
     categoryId: int(formData, "categoryId", 0),
     layout: LAYOUTS.includes(layout) ? layout : "ruler",
     seriesEn: str(formData, "seriesEn"),
@@ -79,6 +90,10 @@ function collectProductData(formData: FormData) {
     materialBg: str(formData, "materialBg"),
     diameterMin: num(formData, "diameterMin"),
     diameterMax: num(formData, "diameterMax"),
+    diameterUnit: str(formData, "diameterUnit") || "in",
+    unit: str(formData, "unit") || "m",
+    moq: num(formData, "moq"),
+    packLength: num(formData, "packLength"),
     coreEn: str(formData, "coreEn"),
     coreBg: str(formData, "coreBg"),
     insulationEn: str(formData, "insulationEn"),
@@ -90,14 +105,16 @@ function collectProductData(formData: FormData) {
     standardEn: str(formData, "standardEn"),
     standardBg: str(formData, "standardBg"),
     standardHighlight: formData.get("standardHighlight") === "on",
+    datasheetUrl: str(formData, "datasheetUrl") || null,
     order: int(formData, "order", 0),
+    isActive: formData.get("isActive") === "on",
   };
 }
 
 export async function createProduct(formData: FormData): Promise<ActionResult> {
   const data = collectProductData(formData);
-  if (!data.code || !data.categoryId || !data.seriesEn) {
-    return { ok: false, error: "Code, category and series name are required." };
+  if (!data.sku || !data.slug || !data.categoryId || !data.seriesEn) {
+    return { ok: false, error: "SKU, slug, category and series name are required." };
   }
 
   const category = await prisma.category.findUnique({ where: { id: data.categoryId } });
@@ -107,14 +124,12 @@ export async function createProduct(formData: FormData): Promise<ActionResult> {
   if (image.error) return { ok: false, error: image.error };
   if (!image.url) return { ok: false, error: "An image is required." };
 
-  const product = await prisma.product.create({
-    data: {
-      ...data,
-      searchText: buildSearchText(data),
-      imageUrl: image.url,
-      categoryId: data.categoryId,
-    },
+  const conflict = await prisma.product.findFirst({
+    where: { OR: [{ sku: data.sku }, { slug: data.slug }] },
   });
+  if (conflict) return { ok: false, error: "A product with this SKU or slug already exists." };
+
+  const product = await prisma.product.create({ data: { ...data, searchText: buildSearchText(data), imageUrl: image.url } });
 
   revalidatePath("/");
   return { ok: true, productId: product.id };
@@ -125,12 +140,17 @@ export async function updateProduct(id: number, formData: FormData): Promise<Act
   if (!existing) return { ok: false, error: "Product not found." };
 
   const data = collectProductData(formData);
-  if (!data.code || !data.categoryId || !data.seriesEn) {
-    return { ok: false, error: "Code, category and series name are required." };
+  if (!data.sku || !data.slug || !data.categoryId || !data.seriesEn) {
+    return { ok: false, error: "SKU, slug, category and series name are required." };
   }
 
   const category = await prisma.category.findUnique({ where: { id: data.categoryId } });
   if (!category) return { ok: false, error: "Category not found." };
+
+  const conflict = await prisma.product.findFirst({
+    where: { id: { not: id }, OR: [{ sku: data.sku }, { slug: data.slug }] },
+  });
+  if (conflict) return { ok: false, error: "A product with this SKU or slug already exists." };
 
   const image = await readImage(formData, existing.imageUrl);
   if (image.error) return { ok: false, error: image.error };

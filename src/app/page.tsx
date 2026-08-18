@@ -7,7 +7,7 @@ export const revalidate = 60;
 export default async function HomePage() {
   const [categories, products] = await Promise.all([
     prisma.category.findMany({ orderBy: { num: "asc" } }),
-    prisma.product.findMany({ orderBy: { order: "asc" } }),
+    prisma.product.findMany({ where: { isActive: true }, orderBy: { order: "asc" } }),
   ]);
 
   const data: CatalogueData = {
@@ -22,7 +22,9 @@ export default async function HomePage() {
     })),
     products: products.map((p) => ({
       id: p.id,
-      code: p.code,
+      sku: p.sku,
+      slug: p.slug,
+      supplierCode: p.supplierCode,
       seriesEn: p.seriesEn,
       seriesBg: p.seriesBg,
       descEn: p.descEn,
@@ -31,6 +33,10 @@ export default async function HomePage() {
       materialBg: p.materialBg,
       diameterMin: p.diameterMin,
       diameterMax: p.diameterMax,
+      diameterUnit: p.diameterUnit,
+      unit: p.unit,
+      moq: p.moq,
+      packLength: p.packLength,
       layout: p.layout as "ruler" | "layers" | "table",
       coreEn: p.coreEn,
       coreBg: p.coreBg,
@@ -44,8 +50,10 @@ export default async function HomePage() {
       standardBg: p.standardBg,
       standardHighlight: p.standardHighlight,
       imageUrl: p.imageUrl,
+      datasheetUrl: p.datasheetUrl,
       searchText: p.searchText,
       order: p.order,
+      isActive: p.isActive,
       categoryId: p.categoryId,
     })),
   };

@@ -3,11 +3,11 @@
 import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/app/admin/actions";
 
-export function DeleteButton({ id, code }: { id: number; code: string }) {
+export function DeleteButton({ id, sku }: { id: number; sku: string }) {
   const router = useRouter();
 
   async function onDelete() {
-    if (!window.confirm(`Delete product "${code}"? This cannot be undone.`)) return;
+    if (!window.confirm(`Delete product "${sku}"? This cannot be undone.`)) return;
     const result = await deleteProduct(id);
     if (result.ok) {
       router.refresh();

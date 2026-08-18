@@ -51,7 +51,8 @@
   ],
   "products": [
     {
-      "code": "ALU FD-01",
+      "sku": "ROX-0001",
+      "supplierCode": "ALU FD-01",
       "seriesEn": "Alu Flex Duct",
       "seriesBg": "Алуминиев гъвкав въздуховод",
       "descEn": "Flexible, lightweight for reliable airflow.",
@@ -78,7 +79,8 @@
       "order": 1
     },
     {
-      "code": "ALU FD-02",
+      "sku": "ROX-0002",
+      "supplierCode": "ALU FD-02",
       "seriesEn": "Alu Flex Duct",
       "seriesBg": "Алуминиев гъвкав въздуховод",
       "descEn": "Tighter wire spacing + reinforced end seal for stability & secure connection.",
@@ -105,7 +107,8 @@
       "order": 2
     },
     {
-      "code": "VMPET FD-01",
+      "sku": "ROX-0003",
+      "supplierCode": "VMPET FD-01",
       "seriesEn": "Vmpet Flex Duct",
       "seriesBg": "VMPET гъвкав въздуховод",
       "descEn": "Lightweight and cost-effective for reliable air distribution.",
@@ -132,7 +135,8 @@
       "order": 3
     },
     {
-      "code": "COMBI FD-01",
+      "sku": "ROX-0004",
+      "supplierCode": "COMBI FD-01",
       "seriesEn": "Pvc Combi Flex Duct",
       "seriesBg": "Комбиниран PVC гъвкав въздуховод",
       "descEn": "PVC-aluminum construction for durable, flexible airflow.",
@@ -159,7 +163,8 @@
       "order": 4
     },
     {
-      "code": "COMBI FD-02",
+      "sku": "ROX-0005",
+      "supplierCode": "COMBI FD-02",
       "seriesEn": "Pvc Combi Flex Duct",
       "seriesBg": "Комбиниран PVC гъвкав въздуховод",
       "descEn": "PVC-aluminum construction for durable, flexible airflow.",
@@ -186,7 +191,8 @@
       "order": 5
     },
     {
-      "code": "COMBI FD-03",
+      "sku": "ROX-0006",
+      "supplierCode": "COMBI FD-03",
       "seriesEn": "Pvc Combi Flex Duct",
       "seriesBg": "Комбиниран PVC гъвкав въздуховод",
       "descEn": "PVC-aluminum construction for durable, flexible airflow.",
@@ -213,7 +219,8 @@
       "order": 6
     },
     {
-      "code": "COMBI FD-04",
+      "sku": "ROX-0007",
+      "supplierCode": "COMBI FD-04",
       "seriesEn": "Pvc Flex Duct",
       "seriesBg": "PVC гъвкав въздуховод",
       "descEn": "Black PVC core for durable, flexible airflow.",
@@ -240,7 +247,8 @@
       "order": 7
     },
     {
-      "code": "COMBI FD-05",
+      "sku": "ROX-0008",
+      "supplierCode": "COMBI FD-05",
       "seriesEn": "Pvc Flex Duct",
       "seriesBg": "PVC гъвкав въздуховод",
       "descEn": "White PVC jacket for clean, durable airflow in visible installations.",
@@ -267,7 +275,8 @@
       "order": 8
     },
     {
-      "code": "PET FD-01",
+      "sku": "ROX-0009",
+      "supplierCode": "PET FD-01",
       "seriesEn": "Pet Flex Duct",
       "seriesBg": "PET гъвкав въздуховод",
       "descEn": "Lightweight PET duct for flexible, reliable ventilation.",
@@ -294,7 +303,8 @@
       "order": 9
     },
     {
-      "code": "PVC FD-01",
+      "sku": "ROX-0010",
+      "supplierCode": "PVC FD-01",
       "seriesEn": "Pvc Flex Duct",
       "seriesBg": "PVC гъвкав въздуховод",
       "descEn": "White PVC with steel wire for flexible, clean ventilation.",
@@ -321,7 +331,8 @@
       "order": 10
     },
     {
-      "code": "PVC FD-02",
+      "sku": "ROX-0011",
+      "supplierCode": "PVC FD-02",
       "seriesEn": "Pvc Flex Duct",
       "seriesBg": "PVC гъвкав въздуховод",
       "descEn": "Gray PVC with steel wire for durable, flexible airflow.",
@@ -348,7 +359,8 @@
       "order": 11
     },
     {
-      "code": "ALU FD-01",
+      "sku": "ROX-0012",
+      "supplierCode": "ALU FD-01",
       "seriesEn": "Alu Flex Duct",
       "seriesBg": "Алуминиев гъвкав въздуховод",
       "descEn": "Aluminum-glassfiber construction for flexible, reliable ventilation.",
@@ -375,7 +387,8 @@
       "order": 12
     },
     {
-      "code": "SR FD-01",
+      "sku": "ROX-0013",
+      "supplierCode": "SR FD-01",
       "seriesEn": "Semi Rigid Flex Duct",
       "seriesBg": "Полутвърд гъвкав въздуховод",
       "descEn": "Corrugated aluminum construction for strength & flexibility.",
@@ -402,7 +415,8 @@
       "order": 13
     },
     {
-      "code": "SR FD-02",
+      "sku": "ROX-0014",
+      "supplierCode": "SR FD-02",
       "seriesEn": "Semi Rigid Flex Duct",
       "seriesBg": "Полутвърд гъвкав въздуховод",
       "descEn": "Smooth-wall aluminum construction for low airflow resistance.",
@@ -429,7 +443,8 @@
       "order": 14
     },
     {
-      "code": "GS FD-01",
+      "sku": "ROX-0015",
+      "supplierCode": "GS FD-01",
       "seriesEn": "Galvanized Steel Duct",
       "seriesBg": "Въздуховод от поцинкована стомана",
       "descEn": "Galvanized steel construction for rigid, durable ventilation.",
@@ -456,7 +471,8 @@
       "order": 15
     },
     {
-      "code": "PG FD-01",
+      "sku": "ROX-0016",
+      "supplierCode": "PG FD-01",
       "seriesEn": "Pvc Coated Flex Duct",
       "seriesBg": "Гъвкав въздуховод с PVC покритие",
       "descEn": "Aluminum construction, flexible, for added strength and durability.",
@@ -483,7 +499,8 @@
       "order": 16
     },
     {
-      "code": "PG FD-02",
+      "sku": "ROX-0017",
+      "supplierCode": "PG FD-02",
       "seriesEn": "Pvc Coated Flex Duct",
       "seriesBg": "Гъвкав въздуховод с PVC покритие",
       "descEn": "Aluminum construction, flexible, for added strength and durability.",
@@ -510,7 +527,8 @@
       "order": 17
     },
     {
-      "code": "SI FD-01",
+      "sku": "ROX-0018",
+      "supplierCode": "SI FD-01",
       "seriesEn": "Silico-Flex Duct",
       "seriesBg": "Силиконов гъвкав въздуховод",
       "descEn": "Double-ply PVC-polyester construction for high flexibility & durability.",
@@ -537,7 +555,8 @@
       "order": 18
     },
     {
-      "code": "PU FD-01",
+      "sku": "ROX-0019",
+      "supplierCode": "PU FD-01",
       "seriesEn": "Pu Flex Duct",
       "seriesBg": "PU гъвкав въздуховод",
       "descEn": "PU construction, flexible, for added strength and durability.",
@@ -564,7 +583,8 @@
       "order": 19
     },
     {
-      "code": "PE FD-01",
+      "sku": "ROX-0020",
+      "supplierCode": "PE FD-01",
       "seriesEn": "Pe Flex Duct",
       "seriesBg": "PE гъвкав въздуховод",
       "descEn": "A practical solution for flexible and reliable ventilation.",
@@ -591,7 +611,8 @@
       "order": 20
     },
     {
-      "code": "PP FD-01",
+      "sku": "ROX-0021",
+      "supplierCode": "PP FD-01",
       "seriesEn": "Mobile AC Duct",
       "seriesBg": "Въздуховод за мобилен климатик",
       "descEn": "A practical solution for flexible and reliable ventilation.",
@@ -618,7 +639,8 @@
       "order": 21
     },
     {
-      "code": "PVE FD-01",
+      "sku": "ROX-0022",
+      "supplierCode": "PVE FD-01",
       "seriesEn": "PVE Flex Duct",
       "seriesBg": "PVE гъвкав въздуховод",
       "descEn": "Grey-blue stripe hose, reinforced, for vent & suction.",
@@ -645,7 +667,8 @@
       "order": 22
     },
     {
-      "code": "PF FD-01",
+      "sku": "ROX-0023",
+      "supplierCode": "PF FD-01",
       "seriesEn": "Pvc Fabric Flex Duct",
       "seriesBg": "Текстилен PVC гъвкав въздуховод",
       "descEn": "PVC-fabric construction with steel wire helix for flexible, durable ventilation.",
@@ -672,7 +695,8 @@
       "order": 23
     },
     {
-      "code": "PF FD-02",
+      "sku": "ROX-0024",
+      "supplierCode": "PF FD-02",
       "seriesEn": "Pvc Fabric Flex Duct",
       "seriesBg": "Текстилен PVC гъвкав въздуховод",
       "descEn": "PVC-fabric construction with steel wire helix for flexible, durable ventilation.",
@@ -699,7 +723,8 @@
       "order": 24
     },
     {
-      "code": "INS DUCT FD-01",
+      "sku": "ROX-0025",
+      "supplierCode": "INS DUCT FD-01",
       "seriesEn": "Insulated Duct Sleeve",
       "seriesBg": "Изолационен ръкав за въздуховод",
       "descEn": "Flexible VMPET-insulated sleeve for small-diameter HVAC systems.",
@@ -726,7 +751,8 @@
       "order": 25
     },
     {
-      "code": "INS DUCT FD-02",
+      "sku": "ROX-0026",
+      "supplierCode": "INS DUCT FD-02",
       "seriesEn": "Insulated Duct Sleeve",
       "seriesBg": "Изолационен ръкав за въздуховод",
       "descEn": "Tear-resistant VMPET-insulated sleeve for large-diameter commercial HVAC.",
@@ -753,7 +779,8 @@
       "order": 26
     },
     {
-      "code": "INS DUCT FD-03",
+      "sku": "ROX-0027",
+      "supplierCode": "INS DUCT FD-03",
       "seriesEn": "Insulated Duct Sleeve",
       "seriesBg": "Изолационен ръкав за въздуховод",
       "descEn": "High-performance PE-insulated sleeve for full-range industrial HVAC.",
@@ -780,7 +807,8 @@
       "order": 27
     },
     {
-      "code": "AB FD-01",
+      "sku": "ROX-0028",
+      "supplierCode": "AB FD-01",
       "seriesEn": "Antimicrobial Alu Flex Duct",
       "seriesBg": "Антимикробен алуминиев въздуховод",
       "descEn": "Antimicrobial aluminum duct for clean, healthy airflow.",
@@ -807,7 +835,8 @@
       "order": 28
     },
     {
-      "code": "AB INS FD-01",
+      "sku": "ROX-0029",
+      "supplierCode": "AB INS FD-01",
       "seriesEn": "Antimicrobial Insulated Flex Duct",
       "seriesBg": "Антимикробен изолиран въздуховод",
       "descEn": "Insulated antimicrobial duct for hygienic HVAC systems.",
@@ -834,7 +863,8 @@
       "order": 29
     },
     {
-      "code": "AB INS FD-02",
+      "sku": "ROX-0030",
+      "supplierCode": "AB INS FD-02",
       "seriesEn": "Antimicrobial Insulated Flex Duct",
       "seriesBg": "Антимикробен изолиран въздуховод",
       "descEn": "Low/medium-pressure insulated duct for reliable ventilation.",
@@ -861,7 +891,8 @@
       "order": 30
     },
     {
-      "code": "VMPET FD-01",
+      "sku": "ROX-0031",
+      "supplierCode": "VMPET FD-01",
       "seriesEn": "PET Black Flex Duct",
       "seriesBg": "Черен PET гъвкав въздуховод",
       "descEn": "High-performance insulated duct for reliable HVAC ventilation.",
@@ -888,7 +919,8 @@
       "order": 31
     },
     {
-      "code": "INS PY FD-01",
+      "sku": "ROX-0032",
+      "supplierCode": "INS PY FD-01",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Lightweight insulated duct for energy-efficient HVAC systems.",
@@ -915,7 +947,8 @@
       "order": 32
     },
     {
-      "code": "INS GF FD-01",
+      "sku": "ROX-0033",
+      "supplierCode": "INS GF FD-01",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Insulated duct for the U.S. and Canada.",
@@ -942,7 +975,8 @@
       "order": 33
     },
     {
-      "code": "INS PY FD-02",
+      "sku": "ROX-0034",
+      "supplierCode": "INS PY FD-02",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Lightweight insulated duct for cost-effective HVAC.",
@@ -969,7 +1003,8 @@
       "order": 34
     },
     {
-      "code": "INS PY FD-03",
+      "sku": "ROX-0035",
+      "supplierCode": "INS PY FD-03",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Low/medium-pressure insulated duct for exhaust systems.",
@@ -996,7 +1031,8 @@
       "order": 35
     },
     {
-      "code": "INS GF FD-02",
+      "sku": "ROX-0036",
+      "supplierCode": "INS GF FD-02",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "High-performance aluminum-fiberglass duct for commercial HVAC.",
@@ -1023,7 +1059,8 @@
       "order": 36
     },
     {
-      "code": "INS GF FD-03",
+      "sku": "ROX-0037",
+      "supplierCode": "INS GF FD-03",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Sound-attenuating perforated aluminum duct for quiet HVAC.",
@@ -1050,7 +1087,8 @@
       "order": 37
     },
     {
-      "code": "RB FD-01",
+      "sku": "ROX-0038",
+      "supplierCode": "RB FD-01",
       "seriesEn": "Rubber Insulated Flexible Duct",
       "seriesBg": "Гъвкав въздуховод с гумена изолация",
       "descEn": "Aluminum-rubber duct for reliable HVAC.",
@@ -1077,7 +1115,8 @@
       "order": 38
     },
     {
-      "code": "INS GF FD-01",
+      "sku": "ROX-0039",
+      "supplierCode": "INS GF FD-01",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Industrial-grade PVC-fiberglass duct for low/medium-pressure exhaust.",
@@ -1104,7 +1143,8 @@
       "order": 39
     },
     {
-      "code": "INS GF FD-02",
+      "sku": "ROX-0040",
+      "supplierCode": "INS GF FD-02",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Sound-attenuating perforated aluminum duct for quiet HVAC.",
@@ -1131,7 +1171,8 @@
       "order": 40
     },
     {
-      "code": "INS GF FD-03",
+      "sku": "ROX-0041",
+      "supplierCode": "INS GF FD-03",
       "seriesEn": "Insulated Flex Duct",
       "seriesBg": "Изолиран гъвкав въздуховод",
       "descEn": "Industrial-grade PVC-fiberglass duct for low/medium-pressure exhaust.",
@@ -1158,7 +1199,8 @@
       "order": 41
     },
     {
-      "code": "AC FD-01",
+      "sku": "ROX-0042",
+      "supplierCode": "AC FD-01",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Sound-dampening duct with PVC jacket for industrial exhaust.",
@@ -1185,7 +1227,8 @@
       "order": 42
     },
     {
-      "code": "AC FD-02",
+      "sku": "ROX-0043",
+      "supplierCode": "AC FD-02",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Noise-reducing duct with VMPET jacket for commercial HVAC.",
@@ -1212,7 +1255,8 @@
       "order": 43
     },
     {
-      "code": "AC FD-03",
+      "sku": "ROX-0044",
+      "supplierCode": "AC FD-03",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Quiet insulated duct with aluminum jacket for residential HVAC.",
@@ -1239,7 +1283,8 @@
       "order": 44
     },
     {
-      "code": "AC FD-04",
+      "sku": "ROX-0045",
+      "supplierCode": "AC FD-04",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Reliable aluminum duct with polyester insulation for quiet airflow.",
@@ -1266,7 +1311,8 @@
       "order": 45
     },
     {
-      "code": "AC FD-05",
+      "sku": "ROX-0046",
+      "supplierCode": "AC FD-05",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Low-noise duct with non-woven core for residential comfort.",
@@ -1293,7 +1339,8 @@
       "order": 46
     },
     {
-      "code": "AC FD-06",
+      "sku": "ROX-0047",
+      "supplierCode": "AC FD-06",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Ultra-flexible acoustic duct with PVE jacket for easy installation.",
@@ -1320,7 +1367,8 @@
       "order": 47
     },
     {
-      "code": "AC FD-07",
+      "sku": "ROX-0048",
+      "supplierCode": "AC FD-07",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Flexible, insulated with polyester fiber for reliable airflow.",
@@ -1347,7 +1395,8 @@
       "order": 48
     },
     {
-      "code": "AC FD-08",
+      "sku": "ROX-0049",
+      "supplierCode": "AC FD-08",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "High-flexibility acoustic duct with coated fabric jacket for quiet ventilation.",
@@ -1374,7 +1423,8 @@
       "order": 49
     },
     {
-      "code": "AC FD-09",
+      "sku": "ROX-0050",
+      "supplierCode": "AC FD-09",
       "seriesEn": "Acoustic Flex Duct",
       "seriesBg": "Акустичен гъвкав въздуховод",
       "descEn": "Ultra-flexible acoustic duct with aluminum jacket for easy installation.",

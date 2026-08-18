@@ -45,10 +45,10 @@ export default async function AdminPage() {
                 <tr key={p.id}>
                   <td>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.imageUrl} alt={p.code} loading="lazy" />
+                    <img src={p.imageUrl} alt={p.sku} loading="lazy" />
                   </td>
                   <td className="mono" style={{ fontWeight: 600 }}>
-                    {p.code}
+                    {p.sku}{p.supplierCode ? ` · ARBO: ${p.supplierCode}` : ""}
                   </td>
                   <td>{p.seriesEn}</td>
                   <td>
@@ -58,7 +58,7 @@ export default async function AdminPage() {
                   <td>
                     <div className="admin-row-actions">
                       <Link href={`/admin/edit/${p.id}`}>Edit</Link>
-                      <DeleteButton id={p.id} code={p.code} />
+                      <DeleteButton id={p.id} sku={p.sku} />
                     </div>
                   </td>
                 </tr>

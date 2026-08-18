@@ -34,7 +34,9 @@ export default async function EditProductPage({
 
   const productData: ProductData = {
     id: product.id,
-    code: product.code,
+    sku: product.sku,
+    slug: product.slug,
+    supplierCode: product.supplierCode,
     seriesEn: product.seriesEn,
     seriesBg: product.seriesBg,
     descEn: product.descEn,
@@ -43,6 +45,10 @@ export default async function EditProductPage({
     materialBg: product.materialBg,
     diameterMin: product.diameterMin,
     diameterMax: product.diameterMax,
+    diameterUnit: product.diameterUnit,
+    unit: product.unit,
+    moq: product.moq,
+    packLength: product.packLength,
     layout: product.layout as ProductData["layout"],
     coreEn: product.coreEn,
     coreBg: product.coreBg,
@@ -56,8 +62,10 @@ export default async function EditProductPage({
     standardBg: product.standardBg,
     standardHighlight: product.standardHighlight,
     imageUrl: product.imageUrl,
+    datasheetUrl: product.datasheetUrl,
     searchText: product.searchText,
     order: product.order,
+    isActive: product.isActive,
     categoryId: product.categoryId,
   };
 
@@ -67,7 +75,7 @@ export default async function EditProductPage({
     <>
       <h1>Edit product</h1>
       <p className="admin-sub">
-        {product.code} — {product.seriesEn}
+        {product.sku} — {product.seriesEn}
       </p>
       <ProductForm categories={categoryData} product={productData} action={updateAction} />
     </>

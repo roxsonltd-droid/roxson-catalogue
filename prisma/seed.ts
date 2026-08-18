@@ -4,6 +4,14 @@ import seedData from "./seed-data.json";
 
 const prisma = new PrismaClient();
 
+function productSlug(sku: string): string {
+  return sku
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 async function main() {
   const adminUsername = process.env.ADMIN_USERNAME ?? "admin";
   const adminPassword = process.env.ADMIN_PASSWORD ?? "admin123";
@@ -43,11 +51,13 @@ async function main() {
   for (const p of seedData.products) {
     const categoryId = categoryBySlug.get(p.categorySlug);
     if (categoryId == null) {
-      console.warn(`skip product ${p.code}: unknown category ${p.categorySlug}`);
+      console.warn(`skip product ${p.sku}: unknown category ${p.categorySlug}`);
       continue;
     }
     const data = {
-      code: p.code,
+      sku: p.sku,
+      slug: productSlug(p.sku),
+      supplierCode: p.supplierCode,
       seriesEn: p.seriesEn,
       seriesBg: p.seriesBg,
       descEn: p.descEn,
@@ -56,6 +66,7 @@ async function main() {
       materialBg: p.materialBg,
       diameterMin: p.diameterMin,
       diameterMax: p.diameterMax,
+      diameterUnit: "in",
       layout: p.layout,
       coreEn: p.coreEn,
       coreBg: p.coreBg,
@@ -73,12 +84,11 @@ async function main() {
       order: p.order,
       categoryId,
     };
-    const existing = await prisma.product.findFirst({ where: { order: p.order } });
-    if (existing) {
-      await prisma.product.update({ where: { id: existing.id }, data });
-    } else {
-      await prisma.product.create({ data });
-    }
+    await prisma.product.upsert({
+      where: { sku: p.sku },
+      update: data,
+      create: data,
+    });
   }
 
   const count = await prisma.product.count();

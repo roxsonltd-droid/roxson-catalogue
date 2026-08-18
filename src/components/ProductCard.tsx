@@ -11,9 +11,10 @@ const Check = () => (
   </svg>
 );
 
-function formatDiameter(min: number | null, max: number | null): string {
+function formatDiameter(min: number | null, max: number | null, unit: string): string {
   if (min == null || max == null) return "";
-  return `${min}″–${max}″`;
+  const suffix = unit === "in" ? "″" : ` ${unit}`;
+  return `${min}–${max}${suffix}`;
 }
 
 export function ProductCard({ product, catSlug }: { product: ProductData; catSlug: string }) {
@@ -32,10 +33,10 @@ export function ProductCard({ product, catSlug }: { product: ProductData; catSlu
     <article className="card" data-cat={catSlug} data-search={product.searchText}>
       <div className="card-photo">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={product.imageUrl} alt={`${product.code} ${series}`} loading="lazy" />
+        <img src={product.imageUrl} alt={`${product.supplierCode ?? product.sku} ${series}`} loading="lazy" />
       </div>
       <div className="card-body">
-        <p className="card-code mono">{product.code}</p>
+        <p className="card-code mono">{product.supplierCode ?? product.sku}</p>
         <h3 className="card-series">{series}</h3>
         <p className="card-desc">{desc}</p>
 
@@ -63,7 +64,7 @@ export function ProductCard({ product, catSlug }: { product: ProductData; catSlu
           <div className="spec-block spec-block--table">
             <div className="spec-cell">
               <span className="spec-k">{t(lang, "spec.diameter")}</span>
-              <span className="spec-v mono">{formatDiameter(product.diameterMin, product.diameterMax)}</span>
+              <span className="spec-v mono">{formatDiameter(product.diameterMin, product.diameterMax, product.diameterUnit)}</span>
             </div>
             <div className="spec-cell">
               <span className="spec-k">{t(lang, "spec.material")}</span>
@@ -86,7 +87,7 @@ export function ProductCard({ product, catSlug }: { product: ProductData; catSlu
             <div className="spec-row">
               <div>
                 <span className="spec-k">{t(lang, "spec.diameter")}</span>
-                <span className="spec-v mono">{formatDiameter(product.diameterMin, product.diameterMax)}</span>
+                <span className="spec-v mono">{formatDiameter(product.diameterMin, product.diameterMax, product.diameterUnit)}</span>
               </div>
               <div>
                 <span className="spec-k">{t(lang, "spec.material")}</span>

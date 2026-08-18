@@ -75,7 +75,9 @@ export function ProductForm({ categories, product, action }: Props) {
         <h2>Basics</h2>
         <p className="admin-sub">Required fields marked with *.</p>
         <div className="form-grid">
-          <Field label="Code *" name="code" defaultValue={product?.code} required />
+          <Field label="ROXSON SKU *" name="sku" defaultValue={product?.sku} required />
+          <Field label="Slug" name="slug" defaultValue={product?.slug} placeholder="Generated from SKU when empty" />
+          <Field label="ARBO supplier code" name="supplierCode" defaultValue={product?.supplierCode ?? ""} />
           <div className="form-field">
             <label htmlFor="categoryId">Category *</label>
             <select id="categoryId" name="categoryId" defaultValue={product?.categoryId ?? categories[0]?.id} required>
@@ -95,6 +97,10 @@ export function ProductForm({ categories, product, action }: Props) {
             </select>
           </div>
           <Field label="Order" name="order" type="number" defaultValue={String(product?.order ?? "")} />
+          <Field label="Unit" name="unit" defaultValue={product?.unit ?? "m"} />
+          <Field label="MOQ" name="moq" type="number" defaultValue={product?.moq != null ? String(product.moq) : ""} />
+          <Field label="Pack length" name="packLength" type="number" defaultValue={product?.packLength != null ? String(product.packLength) : ""} />
+          <Field label="Datasheet URL" name="datasheetUrl" defaultValue={product?.datasheetUrl ?? ""} full />
           <Field label="Series (EN) *" name="seriesEn" defaultValue={product?.seriesEn} required />
           <Field label="Series (BG)" name="seriesBg" defaultValue={product?.seriesBg} />
           <Field label="Description (EN) *" name="descEn" defaultValue={product?.descEn} required type="textarea" full />
@@ -122,8 +128,9 @@ export function ProductForm({ categories, product, action }: Props) {
         <h2>Ruler / Material specs</h2>
         <p className="admin-sub">Used for the &ldquo;ruler&rdquo; and &ldquo;table&rdquo; card layouts.</p>
         <div className="form-grid">
-          <Field label="Diameter min (inches)" name="diameterMin" type="number" defaultValue={product?.diameterMin != null ? String(product.diameterMin) : ""} />
-          <Field label="Diameter max (inches)" name="diameterMax" type="number" defaultValue={product?.diameterMax != null ? String(product.diameterMax) : ""} />
+          <Field label="Diameter min" name="diameterMin" type="number" defaultValue={product?.diameterMin != null ? String(product.diameterMin) : ""} />
+          <Field label="Diameter max" name="diameterMax" type="number" defaultValue={product?.diameterMax != null ? String(product.diameterMax) : ""} />
+          <Field label="Diameter unit" name="diameterUnit" defaultValue={product?.diameterUnit ?? "in"} />
           <Field label="Material (EN)" name="materialEn" defaultValue={product?.materialEn} />
           <Field label="Material (BG)" name="materialBg" defaultValue={product?.materialBg} />
         </div>
@@ -162,6 +169,13 @@ export function ProductForm({ categories, product, action }: Props) {
               Highlight standard (green, e.g. compliance badge)
             </label>
           </div>
+        </div>
+      </div>
+
+      <div className="admin-card">
+        <div className="form-field full" style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+          <input id="isActive" name="isActive" type="checkbox" defaultChecked={product?.isActive ?? true} style={{ width: 16, height: 16 }} />
+          <label htmlFor="isActive" style={{ margin: 0, textTransform: "none", letterSpacing: 0 }}>Active product</label>
         </div>
       </div>
 
