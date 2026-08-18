@@ -20,7 +20,7 @@ export function Hero() {
             <a className="btn btn-primary" href="#non-insulated">
               {t(lang, "hero.cta.browse")}
             </a>
-            <a className="btn btn-ghost" href="mailto:roxson.ltd@gmail.com">
+            <a className="btn btn-ghost" href="#contact">
               {t(lang, "hero.cta.quote")}
             </a>
           </div>
