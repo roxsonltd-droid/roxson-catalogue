@@ -1,0 +1,5 @@
+ALTER TABLE "Quote"
+ADD COLUMN "sentAt" TIMESTAMP(3),
+ADD COLUMN "emailedAt" TIMESTAMP(3),
+ADD COLUMN "sentToEmail" TEXT,
+ADD COLUMN "pdfHash" TEXT;

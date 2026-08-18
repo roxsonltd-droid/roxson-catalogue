@@ -159,7 +159,10 @@ export async function markQuoteSent(inquiryId: number, quoteId: number) {
       where: { inquiryId, status: "SENT", id: { not: quoteId } },
       data: { status: "SUPERSEDED" },
     });
-    await tx.quote.update({ where: { id: quoteId }, data: { status: "SENT" } });
+    await tx.quote.update({
+      where: { id: quoteId },
+      data: { status: "SENT", sentAt: new Date() },
+    });
     await tx.inquiry.update({ where: { id: inquiryId }, data: { status: "QUOTED" } });
   });
   revalidatePath(`/admin/inquiries/${inquiryId}`);

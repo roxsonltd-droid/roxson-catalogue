@@ -113,6 +113,10 @@ model Quote {
   paymentTerms  String?
   deliveryTerms String?
   notes         String?
+  sentAt        DateTime?
+  emailedAt     DateTime?
+  sentToEmail   String?
+  pdfHash       String?
   items         QuoteItem[]
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt

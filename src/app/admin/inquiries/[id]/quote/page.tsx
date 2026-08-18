@@ -75,7 +75,18 @@ export default async function QuotePage({
           <h1>ROX-Q-{String(inquiryId).padStart(6, "0")}-V{version}</h1>
           <p className="admin-sub">{quote?.status ?? "NEW DRAFT"}</p>
         </div>
-        {quote?.status === "DRAFT" && sentAction && <form action={sentAction}><button className="btn btn-primary" type="submit">Mark as Sent</button></form>}
+        <div className="form-actions">
+          {quote?.status === "DRAFT" && sentAction && <form action={sentAction}><button className="btn btn-primary" type="submit">Finalize Quote</button></form>}
+          {quote && quote.status !== "DRAFT" && (
+            <>
+              <a className="btn btn-secondary" href={`/api/admin/quotes/${quote.id}/pdf`} target="_blank">Download PDF</a>
+              <form action={`/api/admin/quotes/${quote.id}/send`} method="post">
+                <input type="hidden" name="recipient" value={inquiry.email} />
+                <button className="btn btn-primary" type="submit">Send by Email</button>
+              </form>
+            </>
+          )}
+        </div>
       </div>
 
       <form action={saveAction}>
@@ -109,6 +120,8 @@ export default async function QuotePage({
             <p><span>Freight</span><strong>{quote.currency} {quote.freight.toFixed(2)}</strong></p>
             <p><span>Discount</span><strong>− {quote.currency} {quote.discount.toFixed(2)}</strong></p>
             <p className="total"><span>Total</span><strong>{quote.currency} {quote.total.toFixed(2)}</strong></p>
+            {quote.sentAt && <p><span>Finalized</span><strong>{quote.sentAt.toLocaleString("en-GB")}</strong></p>}
+            {quote.emailedAt && <p><span>Emailed</span><strong>{quote.sentToEmail} · {quote.emailedAt.toLocaleString("en-GB")}</strong></p>}
           </div>
         )}
 
