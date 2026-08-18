@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import { Ruler } from "@/components/Ruler";
 import { pick, t } from "@/lib/i18n";
-import type { ProductData } from "@/lib/types";
+import type { InquiryDraftItem, ProductData } from "@/lib/types";
 
 const Check = () => (
   <svg viewBox="0 0 16 16" className="chk">
@@ -17,8 +18,41 @@ function formatDiameter(min: number | null, max: number | null, unit: string): s
   return `${min}–${max}${suffix}`;
 }
 
-export function ProductCard({ product, catSlug }: { product: ProductData; catSlug: string }) {
+type ProductCardProps = {
+  product: ProductData;
+  catSlug: string;
+  onAddToInquiry: (item: InquiryDraftItem) => void;
+};
+
+export function ProductCard({ product, catSlug, onAddToInquiry }: ProductCardProps) {
   const { lang } = useLang();
+  const hasDiameterRange = product.diameterMin != null && product.diameterMax != null;
+  const [diameter, setDiameter] = useState<number | "">("");
+  const [quantity, setQuantity] = useState<number | "">(product.moq ?? 1);
+
+  const diameterSuffix = product.diameterUnit === "INCH" ? "″" : "mm";
+  const diameterIsValid = !hasDiameterRange || (
+    typeof diameter === "number" &&
+    diameter >= product.diameterMin! &&
+    diameter <= product.diameterMax!
+  );
+  const quantityIsValid = typeof quantity === "number" && quantity > 0 && (
+    product.moq == null || quantity >= product.moq
+  );
+  const canAdd = diameterIsValid && quantityIsValid;
+
+  function handleAdd() {
+    if (!canAdd || typeof quantity !== "number") return;
+    onAddToInquiry({
+      productId: product.id,
+      sku: product.sku,
+      supplierCode: product.supplierCode,
+      diameter: typeof diameter === "number" ? diameter : null,
+      diameterUnit: product.diameterUnit,
+      quantity,
+      unit: product.unit,
+    });
+  }
 
   const series = pick(lang, product.seriesEn, product.seriesBg);
   const desc = pick(lang, product.descEn, product.descBg);
@@ -37,6 +71,7 @@ export function ProductCard({ product, catSlug }: { product: ProductData; catSlu
       </div>
       <div className="card-body">
         <p className="card-code mono">{product.supplierCode ?? product.sku}</p>
+        {product.supplierCode && <p className="card-sku mono">{product.sku}</p>}
         <h3 className="card-series">{series}</h3>
         <p className="card-desc">{desc}</p>
 
@@ -106,6 +141,45 @@ export function ProductCard({ product, catSlug }: { product: ProductData; catSlu
             <Check />
             {t(lang, "badge.customLengths")}
           </span>
+        </div>
+
+        <div className="rfq-product-controls">
+          {hasDiameterRange && (
+            <label>
+              <span>{lang === "bg" ? "Диаметър" : "Diameter"}</span>
+              <span className="rfq-input-with-unit">
+                <input
+                  type="number"
+                  min={product.diameterMin ?? undefined}
+                  max={product.diameterMax ?? undefined}
+                  step="any"
+                  value={diameter}
+                  onChange={(event) => setDiameter(event.target.value === "" ? "" : Number(event.target.value))}
+                />
+                <small>{diameterSuffix}</small>
+              </span>
+            </label>
+          )}
+
+          <label>
+            <span>{lang === "bg" ? "Количество" : "Quantity"}</span>
+            <span className="rfq-input-with-unit">
+              <input
+                type="number"
+                min={product.moq ?? 0.01}
+                step="any"
+                value={quantity}
+                onChange={(event) => setQuantity(event.target.value === "" ? "" : Number(event.target.value))}
+              />
+              <small>{product.unit}</small>
+            </span>
+          </label>
+
+          {product.moq != null && <p className="rfq-moq">MOQ: {product.moq} {product.unit}</p>}
+
+          <button type="button" className="btn btn-secondary" disabled={!canAdd} onClick={handleAdd}>
+            {lang === "bg" ? "Добави към запитване" : "Add to inquiry"}
+          </button>
         </div>
       </div>
     </article>

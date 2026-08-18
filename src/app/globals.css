@@ -169,6 +169,7 @@ img { display: block; max-width: 100%; }
 .card-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .card-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .card-code { font-size: 12px; font-weight: 600; color: var(--amber); letter-spacing: 0.02em; }
+.card-sku { margin-top: -6px; font-size: 10px; color: var(--steel); letter-spacing: 0.04em; }
 .card-series { font-size: 17px; font-weight: 500; }
 .card-desc { font-size: 13px; color: #5B6472; line-height: 1.5; margin: 0 0 4px; min-height: 36px; }
 
@@ -200,6 +201,14 @@ img { display: block; max-width: 100%; }
 .layer .spec-v { font-weight: 500; }
 
 .badges { display: flex; gap: 8px; margin-top: auto; padding-top: 10px; flex-wrap: wrap; }
+.rfq-product-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+.rfq-product-controls label { display: grid; gap: 5px; font-size: 11px; font-weight: 600; color: var(--steel); }
+.rfq-input-with-unit { display: flex; align-items: center; gap: 6px; }
+.rfq-input-with-unit input { width: 100%; min-width: 0; padding: 8px; border: 1px solid var(--line); border-radius: 5px; background: #fff; color: var(--ink); }
+.rfq-input-with-unit small { min-width: 22px; font-size: 11px; color: var(--steel); }
+.rfq-moq { grid-column: 1 / -1; margin: -2px 0 0; font-size: 10px; color: var(--steel); }
+.rfq-product-controls .btn { grid-column: 1 / -1; width: 100%; padding: 9px 12px; }
+.rfq-product-controls .btn:disabled { cursor: not-allowed; opacity: 0.45; }
 .badge {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 10.5px; color: #5B6472; border: 1px solid var(--line); border-radius: 20px;

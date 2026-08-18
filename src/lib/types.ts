@@ -50,3 +50,13 @@ export type CatalogueData = {
   categories: CategoryData[];
   products: ProductData[];
 };
+
+export type InquiryDraftItem = {
+  productId: number;
+  sku: string;
+  supplierCode: string | null;
+  diameter: number | null;
+  diameterUnit: ProductData["diameterUnit"];
+  quantity: number;
+  unit: string;
+};
