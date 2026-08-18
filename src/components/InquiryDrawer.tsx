@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useLang } from "@/components/LanguageProvider";
+import { InquiryForm } from "@/components/InquiryForm";
 import type { InquiryDraftItem, ProductData } from "@/lib/types";
 
 type InquiryDrawerProps = {
@@ -11,6 +12,10 @@ type InquiryDrawerProps = {
   onClose: () => void;
   onRemove: (index: number) => void;
   onContinue: () => void;
+  showForm: boolean;
+  reference: string | null;
+  onSuccess: (reference: string) => void;
+  onBackToItems: () => void;
 };
 
 function formatDiameter(
@@ -28,6 +33,10 @@ export function InquiryDrawer({
   onClose,
   onRemove,
   onContinue,
+  showForm,
+  reference,
+  onSuccess,
+  onBackToItems,
 }: InquiryDrawerProps) {
   const { lang } = useLang();
 
@@ -68,7 +77,15 @@ export function InquiryDrawer({
         </header>
 
         <div className="inquiry-drawer-body">
-          {items.length === 0 ? (
+          {reference ? (
+            <div className="rfq-success">
+              <strong>{lang === "bg" ? "Запитването е изпратено." : "Inquiry sent."}</strong>
+              <p>{lang === "bg" ? "Вашият номер е:" : "Your reference:"}</p>
+              <span className="mono">{reference}</span>
+            </div>
+          ) : showForm ? (
+            <InquiryForm items={items} onSuccess={onSuccess} onCancel={onBackToItems} />
+          ) : items.length === 0 ? (
             <p className="inquiry-empty">
               {lang === "bg" ? "Все още няма добавени продукти." : "No products have been added yet."}
             </p>
@@ -119,7 +136,7 @@ export function InquiryDrawer({
           )}
         </div>
 
-        {items.length > 0 && (
+        {items.length > 0 && !showForm && !reference && (
           <div className="inquiry-drawer-foot">
             <button type="button" className="btn btn-secondary inquiry-submit" onClick={onContinue}>
               {lang === "bg" ? "Продължи към запитване" : "Continue to inquiry"}

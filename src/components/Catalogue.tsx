@@ -9,6 +9,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { InquiryDrawer } from "@/components/InquiryDrawer";
+import { InquiryButton } from "@/components/InquiryButton";
 import { useLang } from "@/components/LanguageProvider";
 import { t, searchCountLabel } from "@/lib/i18n";
 import type { CatalogueData, InquiryDraftItem, ProductData } from "@/lib/types";
@@ -18,8 +19,11 @@ export function Catalogue({ data }: { data: CatalogueData }) {
   const [query, setQuery] = useState("");
   const [inquiryItems, setInquiryItems] = useState<InquiryDraftItem[]>([]);
   const [inquiryOpen, setInquiryOpen] = useState(false);
+  const [showInquiryForm, setShowInquiryForm] = useState(false);
+  const [inquiryReference, setInquiryReference] = useState<string | null>(null);
 
   function addToInquiry(item: InquiryDraftItem) {
+    setInquiryReference(null);
     setInquiryItems((current) => {
       const existingIndex = current.findIndex(
         (existing) =>
@@ -41,6 +45,12 @@ export function Catalogue({ data }: { data: CatalogueData }) {
 
   function removeInquiryItem(index: number) {
     setInquiryItems((current) => current.filter((_, itemIndex) => itemIndex !== index));
+  }
+
+  function inquirySuccess(reference: string) {
+    setInquiryReference(reference);
+    setInquiryItems([]);
+    setShowInquiryForm(false);
   }
 
   const productsByCategory = useMemo(() => {
@@ -123,22 +133,29 @@ export function Catalogue({ data }: { data: CatalogueData }) {
       <Footer categories={data.categories} />
       <BackToTop />
 
-      {inquiryItems.length > 0 && (
-        <button type="button" className="inquiry-floating-button" onClick={() => setInquiryOpen(true)}>
-          {lang === "bg" ? "Запитване" : "Inquiry"} ({inquiryItems.length})
-        </button>
-      )}
+      <InquiryButton
+        count={inquiryItems.length}
+        onClick={() => {
+          setInquiryOpen(true);
+          setShowInquiryForm(false);
+          setInquiryReference(null);
+        }}
+      />
 
       <InquiryDrawer
         items={inquiryItems}
         products={data.products}
         open={inquiryOpen}
-        onClose={() => setInquiryOpen(false)}
-        onRemove={removeInquiryItem}
-        onContinue={() => {
+        onClose={() => {
           setInquiryOpen(false);
-          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+          setShowInquiryForm(false);
         }}
+        onRemove={removeInquiryItem}
+        onContinue={() => setShowInquiryForm(true)}
+        showForm={showInquiryForm}
+        reference={inquiryReference}
+        onSuccess={inquirySuccess}
+        onBackToItems={() => setShowInquiryForm(false)}
       />
     </>
   );
