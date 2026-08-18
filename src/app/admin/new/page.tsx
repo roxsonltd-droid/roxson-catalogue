@@ -40,7 +40,7 @@ export default async function NewProductPage({
         materialBg: "",
         diameterMin: null,
         diameterMax: null,
-        diameterUnit: "in",
+        diameterUnit: "INCH" as const,
         unit: "m",
         moq: null,
         packLength: null,

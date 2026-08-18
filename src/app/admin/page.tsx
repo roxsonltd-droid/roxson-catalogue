@@ -31,7 +31,7 @@ export default async function AdminPage() {
           <thead>
             <tr>
               <th>Image</th>
-              <th>Code</th>
+              <th>Identifiers</th>
               <th>Series</th>
               <th>Category</th>
               <th>Layout</th>
@@ -58,7 +58,7 @@ export default async function AdminPage() {
                   <td>
                     <div className="admin-row-actions">
                       <Link href={`/admin/edit/${p.id}`}>Edit</Link>
-                      <DeleteButton id={p.id} sku={p.sku} />
+                      {p.isActive ? <DeleteButton id={p.id} sku={p.sku} /> : <span>Inactive</span>}
                     </div>
                   </td>
                 </tr>

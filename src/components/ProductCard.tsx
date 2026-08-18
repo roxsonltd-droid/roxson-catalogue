@@ -13,7 +13,7 @@ const Check = () => (
 
 function formatDiameter(min: number | null, max: number | null, unit: string): string {
   if (min == null || max == null) return "";
-  const suffix = unit === "in" ? "″" : ` ${unit}`;
+  const suffix = unit === "INCH" ? "″" : " mm";
   return `${min}–${max}${suffix}`;
 }
 

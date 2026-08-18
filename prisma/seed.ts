@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { DiameterUnit, PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import seedData from "./seed-data.json";
 
@@ -9,17 +9,59 @@ function productSlug(sku: string): string {
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+    .replace(/^-+|-+$/g, "");
+}
+
+function validateProductIdentities() {
+  const seenSkus = new Set<string>();
+  const seenSlugs = new Set<string>();
+  const supplierCodeCounts = new Map<string, number>();
+
+  for (const product of seedData.products) {
+    if (seenSkus.has(product.sku)) {
+      throw new Error(`Duplicate SKU in seed data: ${product.sku}`);
+    }
+    seenSkus.add(product.sku);
+
+    const slug = productSlug(product.sku);
+    if (!slug) {
+      throw new Error(`SKU does not produce a valid slug: ${product.sku}`);
+    }
+    if (seenSlugs.has(slug)) {
+      throw new Error(`Duplicate product slug in seed data: ${slug}`);
+    }
+    seenSlugs.add(slug);
+
+    if (!Object.values(DiameterUnit).includes(product.diameterUnit as DiameterUnit)) {
+      throw new Error(`Invalid diameter unit for ${product.sku}: ${product.diameterUnit}`);
+    }
+
+    supplierCodeCounts.set(
+      product.supplierCode,
+      (supplierCodeCounts.get(product.supplierCode) ?? 0) + 1
+    );
+  }
+
+  for (const [supplierCode, count] of supplierCodeCounts) {
+    if (count > 1) {
+      console.warn(
+        `Supplier code ${supplierCode} is used by ${count} ROXSON products`
+      );
+    }
+  }
 }
 
 async function main() {
+  validateProductIdentities();
+
   const adminUsername = process.env.ADMIN_USERNAME ?? "admin";
-  const adminPassword = process.env.ADMIN_PASSWORD ?? "admin123";
+  const configuredAdminPassword = process.env.ADMIN_PASSWORD;
+  const adminPassword = configuredAdminPassword ?? "admin123";
   const passwordHash = await bcrypt.hash(adminPassword, 10);
 
   await prisma.admin.upsert({
     where: { username: adminUsername },
-    update: { passwordHash },
+    update: configuredAdminPassword ? { passwordHash } : {},
     create: { username: adminUsername, passwordHash },
   });
 
@@ -66,7 +108,7 @@ async function main() {
       materialBg: p.materialBg,
       diameterMin: p.diameterMin,
       diameterMax: p.diameterMax,
-      diameterUnit: "in",
+      diameterUnit: p.diameterUnit as DiameterUnit,
       layout: p.layout,
       coreEn: p.coreEn,
       coreBg: p.coreBg,

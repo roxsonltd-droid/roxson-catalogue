@@ -130,7 +130,13 @@ export function ProductForm({ categories, product, action }: Props) {
         <div className="form-grid">
           <Field label="Diameter min" name="diameterMin" type="number" defaultValue={product?.diameterMin != null ? String(product.diameterMin) : ""} />
           <Field label="Diameter max" name="diameterMax" type="number" defaultValue={product?.diameterMax != null ? String(product.diameterMax) : ""} />
-          <Field label="Diameter unit" name="diameterUnit" defaultValue={product?.diameterUnit ?? "in"} />
+          <div className="form-field">
+            <label htmlFor="diameterUnit">Diameter unit</label>
+            <select id="diameterUnit" name="diameterUnit" defaultValue={product?.diameterUnit ?? "INCH"}>
+              <option value="INCH">Inches</option>
+              <option value="MM">Millimetres</option>
+            </select>
+          </div>
           <Field label="Material (EN)" name="materialEn" defaultValue={product?.materialEn} />
           <Field label="Material (BG)" name="materialBg" defaultValue={product?.materialBg} />
         </div>

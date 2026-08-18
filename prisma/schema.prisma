@@ -31,7 +31,7 @@ model Product {
   materialBg        String        @default("")
   diameterMin       Float?
   diameterMax       Float?
-  diameterUnit      String        @default("in")
+  diameterUnit      DiameterUnit  @default(INCH)
   unit              String        @default("m")
   moq               Float?
   packLength        Float?
@@ -75,18 +75,19 @@ model Inquiry {
 
   @@index([status])
   @@index([createdAt])
+  @@index([email])
 }
 
 model InquiryItem {
-  id           Int     @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   inquiryId    Int
-  inquiry      Inquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  inquiry      Inquiry      @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
   productId    Int
-  product      Product @relation(fields: [productId], references: [id])
+  product      Product      @relation(fields: [productId], references: [id], onDelete: Restrict)
   diameter     Float?
-  diameterUnit String  @default("mm")
+  diameterUnit DiameterUnit
   quantity     Float
-  unit         String  @default("m")
+  unit         String       @default("m")
   notes        String?
 
   @@index([inquiryId])
@@ -100,6 +101,11 @@ enum InquiryStatus {
   NEGOTIATING
   WON
   LOST
+}
+
+enum DiameterUnit {
+  MM
+  INCH
 }
 
 model Admin {

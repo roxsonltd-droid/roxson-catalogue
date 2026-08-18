@@ -21,7 +21,7 @@ export type ProductData = {
   materialBg: string;
   diameterMin: number | null;
   diameterMax: number | null;
-  diameterUnit: string;
+  diameterUnit: "MM" | "INCH";
   unit: string;
   moq: number | null;
   packLength: number | null;

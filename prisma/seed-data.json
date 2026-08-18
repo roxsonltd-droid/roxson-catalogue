@@ -76,7 +76,8 @@
       "imageUrl": "/products/01-ALU-FD-01.jpg",
       "searchText": "alu fd-01 alu flex duct flexible, lightweight for reliable airflow. aluminum & pet  ",
       "categorySlug": "non-insulated",
-      "order": 1
+      "order": 1,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0002",
@@ -104,7 +105,8 @@
       "imageUrl": "/products/02-ALU-FD-02.jpg",
       "searchText": "alu fd-02 alu flex duct tighter wire spacing + reinforced end seal for stability & secure connection. aluminum & pet  ",
       "categorySlug": "non-insulated",
-      "order": 2
+      "order": 2,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0003",
@@ -132,7 +134,8 @@
       "imageUrl": "/products/03-VMPET-FD-01.jpg",
       "searchText": "vmpet fd-01 vmpet flex duct lightweight and cost-effective for reliable air distribution. vmpet  ",
       "categorySlug": "non-insulated",
-      "order": 3
+      "order": 3,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0004",
@@ -160,7 +163,8 @@
       "imageUrl": "/products/04-COMBI-FD-01.jpg",
       "searchText": "combi fd-01 pvc combi flex duct pvc-aluminum construction for durable, flexible airflow. alu & pvc  ",
       "categorySlug": "non-insulated",
-      "order": 4
+      "order": 4,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0005",
@@ -188,7 +192,8 @@
       "imageUrl": "/products/05-COMBI-FD-02.jpg",
       "searchText": "combi fd-02 pvc combi flex duct pvc-aluminum construction for durable, flexible airflow. alu & pvc  ",
       "categorySlug": "non-insulated",
-      "order": 5
+      "order": 5,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0006",
@@ -216,7 +221,8 @@
       "imageUrl": "/products/06-COMBI-FD-03.jpg",
       "searchText": "combi fd-03 pvc combi flex duct pvc-aluminum construction for durable, flexible airflow. alu & pvc  ",
       "categorySlug": "non-insulated",
-      "order": 6
+      "order": 6,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0007",
@@ -244,7 +250,8 @@
       "imageUrl": "/products/07-COMBI-FD-04.jpg",
       "searchText": "combi fd-04 pvc flex duct black pvc core for durable, flexible airflow. alu & pvc  ",
       "categorySlug": "non-insulated",
-      "order": 7
+      "order": 7,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0008",
@@ -272,7 +279,8 @@
       "imageUrl": "/products/08-COMBI-FD-05.jpg",
       "searchText": "combi fd-05 pvc flex duct white pvc jacket for clean, durable airflow in visible installations. alu & pvc  ",
       "categorySlug": "non-insulated",
-      "order": 8
+      "order": 8,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0009",
@@ -300,7 +308,8 @@
       "imageUrl": "/products/09-PET-FD-01.jpg",
       "searchText": "pet fd-01 pet flex duct lightweight pet duct for flexible, reliable ventilation. pet  ",
       "categorySlug": "non-insulated",
-      "order": 9
+      "order": 9,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0010",
@@ -328,7 +337,8 @@
       "imageUrl": "/products/10-PVC-FD-01.jpg",
       "searchText": "pvc fd-01 pvc flex duct white pvc with steel wire for flexible, clean ventilation. pvc  ",
       "categorySlug": "non-insulated",
-      "order": 10
+      "order": 10,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0011",
@@ -356,7 +366,8 @@
       "imageUrl": "/products/11-PVC-FD-02.jpg",
       "searchText": "pvc fd-02 pvc flex duct gray pvc with steel wire for durable, flexible airflow. pvc  ",
       "categorySlug": "non-insulated",
-      "order": 11
+      "order": 11,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0012",
@@ -384,7 +395,8 @@
       "imageUrl": "/products/12-ALU-GF-FD-01.jpg",
       "searchText": "alu fd-01 alu flex duct aluminum-glassfiber construction for flexible, reliable ventilation. alu & glassfiber  ",
       "categorySlug": "non-insulated",
-      "order": 12
+      "order": 12,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0013",
@@ -412,7 +424,8 @@
       "imageUrl": "/products/13-SR-FD-01.jpg",
       "searchText": "sr fd-01 semi rigid flex duct corrugated aluminum construction for strength & flexibility. alu  ",
       "categorySlug": "non-insulated",
-      "order": 13
+      "order": 13,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0014",
@@ -440,7 +453,8 @@
       "imageUrl": "/products/14-SR-FD-02.jpg",
       "searchText": "sr fd-02 semi rigid flex duct smooth-wall aluminum construction for low airflow resistance. alu  ",
       "categorySlug": "non-insulated",
-      "order": 14
+      "order": 14,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0015",
@@ -468,7 +482,8 @@
       "imageUrl": "/products/15-GS-FD-01.jpg",
       "searchText": "gs fd-01 galvanized steel duct galvanized steel construction for rigid, durable ventilation. galvanized steel  ",
       "categorySlug": "non-insulated",
-      "order": 15
+      "order": 15,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0016",
@@ -496,7 +511,8 @@
       "imageUrl": "/products/16-PG-FD-01.jpg",
       "searchText": "pg fd-01 pvc coated flex duct aluminum construction, flexible, for added strength and durability. pvc & glassfiber  ",
       "categorySlug": "non-insulated",
-      "order": 16
+      "order": 16,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0017",
@@ -524,7 +540,8 @@
       "imageUrl": "/products/17-PG-FD-02.jpg",
       "searchText": "pg fd-02 pvc coated flex duct aluminum construction, flexible, for added strength and durability. pvc & nylon  ",
       "categorySlug": "non-insulated",
-      "order": 17
+      "order": 17,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0018",
@@ -552,7 +569,8 @@
       "imageUrl": "/products/18-SI-FD-01.jpg",
       "searchText": "si fd-01 silico-flex duct double-ply pvc-polyester construction for high flexibility & durability. silicone & fiberglass  ",
       "categorySlug": "non-insulated",
-      "order": 18
+      "order": 18,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0019",
@@ -580,7 +598,8 @@
       "imageUrl": "/products/19-PU-FD-01.jpg",
       "searchText": "pu fd-01 pu flex duct pu construction, flexible, for added strength and durability. pu  ",
       "categorySlug": "non-insulated",
-      "order": 19
+      "order": 19,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0020",
@@ -608,7 +627,8 @@
       "imageUrl": "/products/20-PE-FD-01.jpg",
       "searchText": "pe fd-01 pe flex duct a practical solution for flexible and reliable ventilation. pe  ",
       "categorySlug": "non-insulated",
-      "order": 20
+      "order": 20,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0021",
@@ -636,7 +656,8 @@
       "imageUrl": "/products/21-PP-FD-01.jpg",
       "searchText": "pp fd-01 mobile ac duct a practical solution for flexible and reliable ventilation. pp  ",
       "categorySlug": "non-insulated",
-      "order": 21
+      "order": 21,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0022",
@@ -664,7 +685,8 @@
       "imageUrl": "/products/22-PVE-FD-01.jpg",
       "searchText": "pve fd-01 pve flex duct grey-blue stripe hose, reinforced, for vent & suction. pve  ",
       "categorySlug": "non-insulated",
-      "order": 22
+      "order": 22,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0023",
@@ -692,7 +714,8 @@
       "imageUrl": "/products/23-PF-FD-01.jpg",
       "searchText": "pf fd-01 pvc fabric flex duct pvc-fabric construction with steel wire helix for flexible, durable ventilation. pvc & fabric  ",
       "categorySlug": "non-insulated",
-      "order": 23
+      "order": 23,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0024",
@@ -720,7 +743,8 @@
       "imageUrl": "/products/24-PF-FD-02.jpg",
       "searchText": "pf fd-02 pvc fabric flex duct pvc-fabric construction with steel wire helix for flexible, durable ventilation. pvc & fabric  ",
       "categorySlug": "non-insulated",
-      "order": 24
+      "order": 24,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0025",
@@ -748,7 +772,8 @@
       "imageUrl": "/products/25-INS-DUCT-FD-01.jpg",
       "searchText": "ins duct fd-01 insulated duct sleeve flexible vmpet-insulated sleeve for small-diameter hvac systems. vmpet  ",
       "categorySlug": "duct-sleeve",
-      "order": 25
+      "order": 25,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0026",
@@ -776,7 +801,8 @@
       "imageUrl": "/products/26-INS-DUCT-FD-02.jpg",
       "searchText": "ins duct fd-02 insulated duct sleeve tear-resistant vmpet-insulated sleeve for large-diameter commercial hvac. alu  ",
       "categorySlug": "duct-sleeve",
-      "order": 26
+      "order": 26,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0027",
@@ -804,7 +830,8 @@
       "imageUrl": "/products/27-INS-DUCT-FD-03.jpg",
       "searchText": "ins duct fd-03 insulated duct sleeve high-performance pe-insulated sleeve for full-range industrial hvac. pe  ",
       "categorySlug": "duct-sleeve",
-      "order": 27
+      "order": 27,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0028",
@@ -832,7 +859,8 @@
       "imageUrl": "/products/28-AB-FD-01.jpg",
       "searchText": "ab fd-01 antimicrobial alu flex duct antimicrobial aluminum duct for clean, healthy airflow. antimicrobial alu  ",
       "categorySlug": "antibacarbo",
-      "order": 28
+      "order": 28,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0029",
@@ -860,7 +888,8 @@
       "imageUrl": "/products/29-AB-INS-FD-01.jpg",
       "searchText": "ab ins fd-01 antimicrobial insulated flex duct insulated antimicrobial duct for hygienic hvac systems.  antimicrobial alu antimicrobial alu",
       "categorySlug": "antibacarbo",
-      "order": 29
+      "order": 29,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0030",
@@ -888,7 +917,8 @@
       "imageUrl": "/products/30-AB-INS-FD-02.jpg",
       "searchText": "ab ins fd-02 antimicrobial insulated flex duct low/medium-pressure insulated duct for reliable ventilation.  antimicrobial alu antimicrobial alu",
       "categorySlug": "antibacarbo",
-      "order": 30
+      "order": 30,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0031",
@@ -916,7 +946,8 @@
       "imageUrl": "/products/31-VMPET-BLACK-FD-01.jpg",
       "searchText": "vmpet fd-01 pet black flex duct high-performance insulated duct for reliable hvac ventilation. vmpet  ",
       "categorySlug": "ductique",
-      "order": 31
+      "order": 31,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0032",
@@ -944,7 +975,8 @@
       "imageUrl": "/products/32-INS-PY-FD-01.jpg",
       "searchText": "ins py fd-01 insulated flex duct lightweight insulated duct for energy-efficient hvac systems. r0.6 / r1.0 / r1.5  ",
       "categorySlug": "ductique",
-      "order": 32
+      "order": 32,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0033",
@@ -972,7 +1004,8 @@
       "imageUrl": "/products/33-INS-GF-FD-01-US.jpg",
       "searchText": "ins gf fd-01 insulated flex duct insulated duct for the u.s. and canada.  pet vmpet",
       "categorySlug": "insulated-flex",
-      "order": 33
+      "order": 33,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0034",
@@ -1000,7 +1033,8 @@
       "imageUrl": "/products/34-INS-PY-FD-02.jpg",
       "searchText": "ins py fd-02 insulated flex duct lightweight insulated duct for cost-effective hvac.  alu alu",
       "categorySlug": "insulated-flex",
-      "order": 34
+      "order": 34,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0035",
@@ -1028,7 +1062,8 @@
       "imageUrl": "/products/35-INS-PY-FD-03.jpg",
       "searchText": "ins py fd-03 insulated flex duct low/medium-pressure insulated duct for exhaust systems.  non-woven black alu",
       "categorySlug": "insulated-flex",
-      "order": 35
+      "order": 35,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0036",
@@ -1056,7 +1091,8 @@
       "imageUrl": "/products/36-INS-GF-FD-02-ALU.jpg",
       "searchText": "ins gf fd-02 insulated flex duct high-performance aluminum-fiberglass duct for commercial hvac.  alu alu",
       "categorySlug": "insulated-flex",
-      "order": 36
+      "order": 36,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0037",
@@ -1084,7 +1120,8 @@
       "imageUrl": "/products/37-INS-GF-FD-03-ALU.jpg",
       "searchText": "ins gf fd-03 insulated flex duct sound-attenuating perforated aluminum duct for quiet hvac.  alu alu",
       "categorySlug": "insulated-flex",
-      "order": 37
+      "order": 37,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0038",
@@ -1112,7 +1149,8 @@
       "imageUrl": "/products/38-RB-FD-01.jpg",
       "searchText": "rb fd-01 rubber insulated flexible duct aluminum-rubber duct for reliable hvac.  rubber (inner lining) alu (outer duct)",
       "categorySlug": "insulated-flex",
-      "order": 38
+      "order": 38,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0039",
@@ -1140,7 +1178,8 @@
       "imageUrl": "/products/39-INS-GF-FD-01-PVC.jpg",
       "searchText": "ins gf fd-01 insulated flex duct industrial-grade pvc-fiberglass duct for low/medium-pressure exhaust.  pvc pvc",
       "categorySlug": "insulated-flex",
-      "order": 39
+      "order": 39,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0040",
@@ -1168,7 +1207,8 @@
       "imageUrl": "/products/40-INS-GF-FD-02-PE.jpg",
       "searchText": "ins gf fd-02 insulated flex duct sound-attenuating perforated aluminum duct for quiet hvac.  non-woven pe",
       "categorySlug": "insulated-flex",
-      "order": 40
+      "order": 40,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0041",
@@ -1196,7 +1236,8 @@
       "imageUrl": "/products/41-INS-GF-FD-03-VMPET.jpg",
       "searchText": "ins gf fd-03 insulated flex duct industrial-grade pvc-fiberglass duct for low/medium-pressure exhaust.  pet pe",
       "categorySlug": "insulated-flex",
-      "order": 41
+      "order": 41,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0042",
@@ -1224,7 +1265,8 @@
       "imageUrl": "/products/42-AC-FD-01.jpg",
       "searchText": "ac fd-01 acoustic flex duct sound-dampening duct with pvc jacket for industrial exhaust.  alu alu & pvc",
       "categorySlug": "acoustic",
-      "order": 42
+      "order": 42,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0043",
@@ -1252,7 +1294,8 @@
       "imageUrl": "/products/43-AC-FD-02.jpg",
       "searchText": "ac fd-02 acoustic flex duct noise-reducing duct with vmpet jacket for commercial hvac.  alu vmpet",
       "categorySlug": "acoustic",
-      "order": 43
+      "order": 43,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0044",
@@ -1280,7 +1323,8 @@
       "imageUrl": "/products/44-AC-FD-03.jpg",
       "searchText": "ac fd-03 acoustic flex duct quiet insulated duct with aluminum jacket for residential hvac.  alu alu",
       "categorySlug": "acoustic",
-      "order": 44
+      "order": 44,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0045",
@@ -1308,7 +1352,8 @@
       "imageUrl": "/products/45-AC-FD-04.jpg",
       "searchText": "ac fd-04 acoustic flex duct reliable aluminum duct with polyester insulation for quiet airflow.  alu vmpet",
       "categorySlug": "acoustic",
-      "order": 45
+      "order": 45,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0046",
@@ -1336,7 +1381,8 @@
       "imageUrl": "/products/46-AC-FD-05.jpg",
       "searchText": "ac fd-05 acoustic flex duct low-noise duct with non-woven core for residential comfort.  non-woven alu",
       "categorySlug": "acoustic",
-      "order": 46
+      "order": 46,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0047",
@@ -1364,7 +1410,8 @@
       "imageUrl": "/products/47-AC-FD-06.jpg",
       "searchText": "ac fd-06 acoustic flex duct ultra-flexible acoustic duct with pve jacket for easy installation.  non-woven vmpet",
       "categorySlug": "acoustic",
-      "order": 47
+      "order": 47,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0048",
@@ -1392,7 +1439,8 @@
       "imageUrl": "/products/48-AC-FD-07.jpg",
       "searchText": "ac fd-07 acoustic flex duct flexible, insulated with polyester fiber for reliable airflow.  non-woven tpe",
       "categorySlug": "acoustic",
-      "order": 48
+      "order": 48,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0049",
@@ -1420,7 +1468,8 @@
       "imageUrl": "/products/49-AC-FD-08.jpg",
       "searchText": "ac fd-08 acoustic flex duct high-flexibility acoustic duct with coated fabric jacket for quiet ventilation.  non-woven coated fabric",
       "categorySlug": "acoustic",
-      "order": 49
+      "order": 49,
+      "diameterUnit": "INCH"
     },
     {
       "sku": "ROX-0050",
@@ -1448,7 +1497,8 @@
       "imageUrl": "/products/50-AC-FD-09.jpg",
       "searchText": "ac fd-09 acoustic flex duct ultra-flexible acoustic duct with aluminum jacket for easy installation.  alu alu",
       "categorySlug": "acoustic",
-      "order": 50
+      "order": 50,
+      "diameterUnit": "INCH"
     }
   ]
 }

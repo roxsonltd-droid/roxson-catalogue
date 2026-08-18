@@ -11,6 +11,7 @@ export type ActionResult = {
 };
 
 const LAYOUTS = ["ruler", "layers", "table"];
+const DIAMETER_UNITS = ["MM", "INCH"] as const;
 
 function slugify(value: string): string {
   return value
@@ -76,6 +77,7 @@ async function readImage(formData: FormData, fallbackUrl: string): Promise<{ url
 
 function collectProductData(formData: FormData) {
   const layout = str(formData, "layout");
+  const diameterUnit = str(formData, "diameterUnit");
   return {
     sku: str(formData, "sku"),
     slug: slugify(str(formData, "slug") || str(formData, "sku")),
@@ -90,7 +92,9 @@ function collectProductData(formData: FormData) {
     materialBg: str(formData, "materialBg"),
     diameterMin: num(formData, "diameterMin"),
     diameterMax: num(formData, "diameterMax"),
-    diameterUnit: str(formData, "diameterUnit") || "in",
+    diameterUnit: DIAMETER_UNITS.includes(diameterUnit as (typeof DIAMETER_UNITS)[number])
+      ? (diameterUnit as (typeof DIAMETER_UNITS)[number])
+      : "INCH",
     unit: str(formData, "unit") || "m",
     moq: num(formData, "moq"),
     packLength: num(formData, "packLength"),
@@ -173,12 +177,11 @@ export async function updateProduct(id: number, formData: FormData): Promise<Act
   return { ok: true, productId: product.id };
 }
 
-export async function deleteProduct(id: number): Promise<ActionResult> {
+export async function deactivateProduct(id: number): Promise<ActionResult> {
   const existing = await prisma.product.findUnique({ where: { id } });
   if (!existing) return { ok: false, error: "Product not found." };
 
-  await prisma.product.delete({ where: { id } });
-  if (existing.imageUrl.startsWith("http")) await deleteImage(existing.imageUrl);
+  await prisma.product.update({ where: { id }, data: { isActive: false } });
 
   revalidatePath("/");
   return { ok: true };
