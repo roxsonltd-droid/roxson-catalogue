@@ -1,4 +1,7 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from "pdf-lib";
+import { companyProfile } from "@/lib/company-profile";
 
 export type QuotePdfData = {
   quoteNumber: string;
@@ -57,7 +60,7 @@ function fit(value: string, font: PDFFont, size: number, width: number) {
 
 function footer(page: PDFPage, font: PDFFont, pageNumber: number) {
   page.drawLine({ start: { x: MARGIN, y: 30 }, end: { x: WIDTH - MARGIN, y: 30 }, thickness: 0.5, color: LIGHT });
-  page.drawText("ROXSON LTD | roxson.eu | roxson.ltd@gmail.com", { x: MARGIN, y: 17, size: 7.5, font, color: GRAY });
+  page.drawText(`${companyProfile.legalName} | ${companyProfile.website} | ${companyProfile.email}`, { x: MARGIN, y: 17, size: 7.5, font, color: GRAY });
   page.drawText(`Page ${pageNumber}`, { x: WIDTH - MARGIN - 34, y: 17, size: 7.5, font, color: GRAY });
 }
 
@@ -65,6 +68,9 @@ export async function generateQuotePdf(data: QuotePdfData): Promise<Buffer> {
   const pdf = await PDFDocument.create();
   const regular = await pdf.embedFont(StandardFonts.Helvetica);
   const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
+  const logo = await readFile(join(process.cwd(), "public", "roxson-logo.jpg"))
+    .then((bytes) => pdf.embedJpg(bytes))
+    .catch(() => null);
   const fixedDate = data.sentAt ?? data.createdAt;
   pdf.setTitle(data.quoteNumber);
   pdf.setAuthor("ROXSON LTD");
@@ -87,8 +93,13 @@ export async function generateQuotePdf(data: QuotePdfData): Promise<Buffer> {
   newPage();
 
   page!.drawRectangle({ x: 0, y: HEIGHT - 118, width: WIDTH, height: 118, color: NAVY });
-  page!.drawText("ROXSON LTD", { x: MARGIN, y: HEIGHT - 66, size: 24, font: bold, color: rgb(1, 1, 1) });
-  page!.drawText("B2B INDUSTRIAL VENTILATION SOLUTIONS", { x: MARGIN, y: HEIGHT - 84, size: 8, font: regular, color: rgb(0.75, 0.84, 0.92) });
+  if (logo) {
+    const width = 215;
+    const height = width * (logo.height / logo.width);
+    page!.drawImage(logo, { x: MARGIN, y: HEIGHT - 24 - height, width, height });
+  } else {
+    page!.drawText("ROXSON LTD", { x: MARGIN, y: HEIGHT - 66, size: 24, font: bold, color: rgb(1, 1, 1) });
+  }
   page!.drawText("QUOTATION", { x: WIDTH - MARGIN - 105, y: HEIGHT - 59, size: 15, font: bold, color: rgb(1, 1, 1) });
   page!.drawText(data.quoteNumber, { x: WIDTH - MARGIN - 105, y: HEIGHT - 80, size: 9, font: regular, color: rgb(0.75, 0.84, 0.92) });
   y = HEIGHT - 148;
@@ -170,6 +181,33 @@ export async function generateQuotePdf(data: QuotePdfData): Promise<Buffer> {
     page!.drawText(fit(value, regular, 8, WIDTH - MARGIN * 2), { x: MARGIN, y, size: 8, font: regular, color: NAVY });
     y -= 22;
   }
+
+  if (y < 100) newPage();
+  page!.drawText("SUPPLIER AND PAYMENT DETAILS", { x: MARGIN, y, size: 7.5, font: bold, color: BLUE });
+  y -= 15;
+  page!.drawText(companyProfile.legalName, { x: MARGIN, y, size: 8, font: bold, color: NAVY });
+  page!.drawText(companyProfile.address, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("Company No.", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.companyNumber, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("VAT No.", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.vatNumber, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("Contact", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.contactName, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("Account holder", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.accountHolder, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("Bank", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.bankName, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("BIC / SWIFT", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.bic, { x: 145, y, size: 8, font: regular, color: NAVY });
+  y -= 14;
+  page!.drawText("IBAN", { x: MARGIN, y, size: 8, font: bold, color: GRAY });
+  page!.drawText(companyProfile.iban, { x: 145, y, size: 8, font: regular, color: NAVY });
 
   return Buffer.from(await pdf.save({ useObjectStreams: false }));
 }
