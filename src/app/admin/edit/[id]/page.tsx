@@ -66,6 +66,7 @@ export default async function EditProductPage({
     searchText: product.searchText,
     order: product.order,
     isActive: product.isActive,
+    technicalDataStatus: product.technicalDataStatus,
     categoryId: product.categoryId,
   };
 

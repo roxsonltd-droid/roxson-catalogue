@@ -19,45 +19,47 @@ model Category {
 }
 
 model Product {
-  id                Int           @id @default(autoincrement())
-  sku               String        @unique
-  slug              String        @unique
-  supplierCode      String?
-  seriesEn          String
-  seriesBg          String
-  descEn            String
-  descBg            String
-  materialEn        String        @default("")
-  materialBg        String        @default("")
-  diameterMin       Float?
-  diameterMax       Float?
-  diameterUnit      DiameterUnit  @default(INCH)
-  unit              String        @default("m")
-  moq               Float?
-  packLength        Float?
-  layout            String        @default("ruler")
-  coreEn            String        @default("")
-  coreBg            String        @default("")
-  insulationEn      String        @default("")
-  insulationBg      String        @default("")
-  jacketEn          String        @default("")
-  jacketBg          String        @default("")
-  applicationEn     String        @default("")
-  applicationBg     String        @default("")
-  standardEn        String        @default("")
-  standardBg        String        @default("")
-  standardHighlight Boolean       @default(false)
-  imageUrl          String
-  datasheetUrl      String?
-  searchText        String        @default("")
-  order             Int           @default(0)
-  isActive          Boolean       @default(true)
-  categoryId        Int
-  category          Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  inquiryItems      InquiryItem[]
+  id                  Int                 @id @default(autoincrement())
+  sku                 String              @unique
+  slug                String              @unique
+  supplierCode        String?
+  seriesEn            String
+  seriesBg            String
+  descEn              String
+  descBg              String
+  materialEn          String              @default("")
+  materialBg          String              @default("")
+  diameterMin         Float?
+  diameterMax         Float?
+  diameterUnit        DiameterUnit        @default(INCH)
+  unit                String              @default("m")
+  moq                 Float?
+  packLength          Float?
+  layout              String              @default("ruler")
+  coreEn              String              @default("")
+  coreBg              String              @default("")
+  insulationEn        String              @default("")
+  insulationBg        String              @default("")
+  jacketEn            String              @default("")
+  jacketBg            String              @default("")
+  applicationEn       String              @default("")
+  applicationBg       String              @default("")
+  standardEn          String              @default("")
+  standardBg          String              @default("")
+  standardHighlight   Boolean             @default(false)
+  imageUrl            String
+  datasheetUrl        String?
+  searchText          String              @default("")
+  order               Int                 @default(0)
+  isActive            Boolean             @default(true)
+  technicalDataStatus TechnicalDataStatus @default(UNREVIEWED)
+  categoryId          Int
+  category            Category            @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  inquiryItems        InquiryItem[]
 
   @@index([categoryId])
   @@index([isActive])
+  @@index([technicalDataStatus])
 }
 
 model Inquiry {
@@ -106,6 +108,12 @@ enum InquiryStatus {
 enum DiameterUnit {
   MM
   INCH
+}
+
+enum TechnicalDataStatus {
+  UNREVIEWED
+  NEEDS_VERIFICATION
+  VERIFIED
 }
 
 model Admin {

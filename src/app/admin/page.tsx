@@ -35,6 +35,7 @@ export default async function AdminPage() {
               <th>Series</th>
               <th>Category</th>
               <th>Layout</th>
+              <th>Technical data</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -55,6 +56,7 @@ export default async function AdminPage() {
                     {category ? `${String(category.num).padStart(2, "0")} — ${category.titleEn}` : p.categoryId}
                   </td>
                   <td>{p.layout}</td>
+                  <td>{p.technicalDataStatus.replaceAll("_", " ")}</td>
                   <td>
                     <div className="admin-row-actions">
                       <Link href={`/admin/edit/${p.id}`}>Edit</Link>
@@ -66,7 +68,7 @@ export default async function AdminPage() {
             })}
             {products.length === 0 && (
               <tr>
-                <td colSpan={6} style={{ textAlign: "center", color: "var(--steel)", padding: 24 }}>
+                <td colSpan={7} style={{ textAlign: "center", color: "var(--steel)", padding: 24 }}>
                   No products yet. Add your first product.
                 </td>
               </tr>

@@ -12,6 +12,7 @@ export type ActionResult = {
 
 const LAYOUTS = ["ruler", "layers", "table"];
 const DIAMETER_UNITS = ["MM", "INCH"] as const;
+const TECHNICAL_DATA_STATUSES = ["UNREVIEWED", "NEEDS_VERIFICATION", "VERIFIED"] as const;
 
 function slugify(value: string): string {
   return value
@@ -78,6 +79,7 @@ async function readImage(formData: FormData, fallbackUrl: string): Promise<{ url
 function collectProductData(formData: FormData) {
   const layout = str(formData, "layout");
   const diameterUnit = str(formData, "diameterUnit");
+  const technicalDataStatus = str(formData, "technicalDataStatus");
   return {
     sku: str(formData, "sku"),
     slug: slugify(str(formData, "slug") || str(formData, "sku")),
@@ -112,6 +114,11 @@ function collectProductData(formData: FormData) {
     datasheetUrl: str(formData, "datasheetUrl") || null,
     order: int(formData, "order", 0),
     isActive: formData.get("isActive") === "on",
+    technicalDataStatus: TECHNICAL_DATA_STATUSES.includes(
+      technicalDataStatus as (typeof TECHNICAL_DATA_STATUSES)[number]
+    )
+      ? (technicalDataStatus as (typeof TECHNICAL_DATA_STATUSES)[number])
+      : "UNREVIEWED",
   };
 }
 

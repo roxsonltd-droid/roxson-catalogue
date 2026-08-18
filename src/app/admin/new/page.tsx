@@ -61,6 +61,7 @@ export default async function NewProductPage({
         searchText: "",
         order: 0,
         isActive: true,
+        technicalDataStatus: "UNREVIEWED" as const,
         categoryId: preselect.id,
       }
     : null;

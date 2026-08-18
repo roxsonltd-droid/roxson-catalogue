@@ -179,6 +179,14 @@ export function ProductForm({ categories, product, action }: Props) {
       </div>
 
       <div className="admin-card">
+        <div className="form-field full">
+          <label htmlFor="technicalDataStatus">Technical data status</label>
+          <select id="technicalDataStatus" name="technicalDataStatus" defaultValue={product?.technicalDataStatus ?? "UNREVIEWED"}>
+            <option value="UNREVIEWED">Unreviewed</option>
+            <option value="NEEDS_VERIFICATION">Needs verification</option>
+            <option value="VERIFIED">Verified against source</option>
+          </select>
+        </div>
         <div className="form-field full" style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
           <input id="isActive" name="isActive" type="checkbox" defaultChecked={product?.isActive ?? true} style={{ width: 16, height: 16 }} />
           <label htmlFor="isActive" style={{ margin: 0, textTransform: "none", letterSpacing: 0 }}>Active product</label>

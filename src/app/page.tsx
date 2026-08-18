@@ -54,6 +54,7 @@ export default async function HomePage() {
       searchText: p.searchText,
       order: p.order,
       isActive: p.isActive,
+      technicalDataStatus: p.technicalDataStatus,
       categoryId: p.categoryId,
     })),
   };

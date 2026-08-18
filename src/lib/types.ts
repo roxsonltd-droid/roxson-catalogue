@@ -42,6 +42,7 @@ export type ProductData = {
   searchText: string;
   order: number;
   isActive: boolean;
+  technicalDataStatus: "UNREVIEWED" | "NEEDS_VERIFICATION" | "VERIFIED";
   categoryId: number;
 };
 

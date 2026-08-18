@@ -1,4 +1,4 @@
-import { DiameterUnit, PrismaClient } from "@prisma/client";
+import { DiameterUnit, PrismaClient, TechnicalDataStatus } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import seedData from "./seed-data.json";
 
@@ -34,6 +34,14 @@ function validateProductIdentities() {
 
     if (!Object.values(DiameterUnit).includes(product.diameterUnit as DiameterUnit)) {
       throw new Error(`Invalid diameter unit for ${product.sku}: ${product.diameterUnit}`);
+    }
+
+    if (!Object.values(TechnicalDataStatus).includes(
+      product.technicalDataStatus as TechnicalDataStatus
+    )) {
+      throw new Error(
+        `Invalid technical data status for ${product.sku}: ${product.technicalDataStatus}`
+      );
     }
 
     supplierCodeCounts.set(
@@ -109,6 +117,7 @@ async function main() {
       diameterMin: p.diameterMin,
       diameterMax: p.diameterMax,
       diameterUnit: p.diameterUnit as DiameterUnit,
+      technicalDataStatus: p.technicalDataStatus as TechnicalDataStatus,
       layout: p.layout,
       coreEn: p.coreEn,
       coreBg: p.coreBg,
