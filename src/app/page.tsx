@@ -2,7 +2,9 @@ import { Catalogue } from "@/components/Catalogue";
 import { prisma } from "@/lib/db";
 import type { CatalogueData } from "@/lib/types";
 
-export const revalidate = 60;
+// The catalogue is loaded from PostgreSQL, so render this route at request time.
+// This keeps production builds from requiring a live DATABASE_URL during prerendering.
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [categories, products] = await Promise.all([
