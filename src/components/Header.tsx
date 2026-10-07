@@ -57,6 +57,14 @@ export function Header({ categories, searchValue, onSearchChange, resultLabel, o
 
   const closeMenu = () => setMenuOpen(false);
   const switchLang = (next: Lang) => setLang(next);
+  const compactCategoryNames: Record<number, { en: string; bg: string }> = {
+    1: { en: "Non-insulated", bg: "Неизолирани" },
+    2: { en: "Sleeves", bg: "Ръкави" },
+    3: { en: "AntibacArbo", bg: "AntibacArbo" },
+    4: { en: "Ductique", bg: "Ductique" },
+    5: { en: "Insulated", bg: "Изолирани" },
+    6: { en: "Acoustic", bg: "Акустични" },
+  };
 
   return (
     <div className="topbar">
@@ -74,9 +82,16 @@ export function Header({ categories, searchValue, onSearchChange, resultLabel, o
         </a>
         <nav className="navlinks" ref={navRef}>
           {categories.map((c) => (
-            <a key={c.slug} href={`#${c.slug}`} className="navlink" data-nav={c.slug} onClick={onNavigate}>
+            <a
+              key={c.slug}
+              href={`#${c.slug}`}
+              className="navlink"
+              data-nav={c.slug}
+              onClick={onNavigate}
+              title={lang === "bg" ? c.titleBg : c.titleEn}
+            >
               <span className="mono navnum">{String(c.num).padStart(2, "0")}</span>
-              <span>{lang === "bg" ? c.titleBg : c.titleEn}</span>
+              <span>{compactCategoryNames[c.num]?.[lang] ?? (lang === "bg" ? c.titleBg : c.titleEn)}</span>
             </a>
           ))}
           <a href="#contact" className="navlink" data-nav="contact" onClick={onNavigate}>
